@@ -1,0 +1,7 @@
+.main {
+    width: 100vw;
+    height: fit-content;
+    overflow: hidden;
+    padding: 120px;
+    background-color: #eef2f4;
+}

@@ -1,0 +1,106 @@
+.list__wrapper {
+
+}
+
+.list {
+    border: 4px solid black;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.list li {
+    
+}
+
+.list__button {
+    padding: 5px 15px 5px 15px;
+    width: fit-content;
+
+    justify-content: space-between;
+    margin: auto;
+    border: 3px solid var(--Text);
+    border-radius: 8px;
+
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--Text);
+
+    transition: all 0.4s;
+}
+
+
+.button__one {
+    border-color: var(--Accent);
+    color: #000;
+    position: relative;
+}
+
+.button__one::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -31px;
+    left: -23%;
+    background-color: var(--Accent);
+    height: 4px;
+    width: 120px;
+    pointer-events: none;
+}
+
+.button__two {
+    border-color: var(--Accent);
+    color: #000;
+    position: relative;
+}
+
+.button__two::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -31px;
+    left: -23%;
+    background-color: var(--Accent);
+    height: 4px;
+    width: 200px;
+    pointer-events: none;
+}
+
+.button__three {
+    border-color: var(--Accent);
+    color: #000;
+    position: relative;
+}
+
+.button__three::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -31px;
+    left: -18px;
+    background-color: var(--Accent);
+    height: 4px;
+    width: 270px;
+    pointer-events: none;
+}
+
+.button__four {
+    border-color: var(--Accent);
+    color: #000;
+    position: relative;
+}
+
+.button__four::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -31px;
+    left: -18px;
+    background-color: var(--Accent);
+    height: 4px;
+    width: 160px;
+    pointer-events: none;
+}
