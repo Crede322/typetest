@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Keys = ({ width, height, color, borderRadius, border, boxShadow, position, text, ruText, leftKey,}) => {
+const Keys = ({ width, height, color, borderRadius, border, marginTop, boxShadow, position, text, ruText, leftKey, keyPosition}) => {
     const keyStyle = {
         position,
         boxShadow,
         border,
+        marginTop,
         borderRadius,
         width,
         height,
@@ -13,16 +14,18 @@ const Keys = ({ width, height, color, borderRadius, border, boxShadow, position,
     const leftStyle = {
         left : leftKey,
     }
-    
+    const keyPositionStyles = {
+        marginTop: keyPosition,
+    }
+
     return (
         <div style={keyStyle}>
-            <h2>{text}</h2><h3 style={leftStyle}>{ruText}</h3>
+            <h2 style={keyPositionStyles}>{text}</h2><h3 style={leftStyle}>{ruText}</h3>
         </div>
     );
 };
 
 Keys.defaultProps = {
-    left: '38',
     borderRadius: '5px',
     width: '60px',
     height: '60px',
