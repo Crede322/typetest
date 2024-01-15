@@ -1,8 +1,39 @@
 .tabOne__wrapper {
     width: 1255.5px;
-    height: 200px;
+    height: fit-content;
     border: 4px solid black;
     border-top: none;
     border-radius: 0 0 15px 15px;
-    background-color: aqua;
+    background-color: #fff;
+}
+
+.keyboard {
+    padding: 10px;
+}
+
+.keyboard ul {
+    display: flex;
+}
+
+.keyboard ul * {
+    margin-right: 10px;
+}
+
+.keyboard h2 {
+    margin-top: 7px;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard h3 {
+    font-size: 24px;
+    position: absolute;
+    left: 38px;
+    bottom: 5px;
+}
+
+.keyRow {
+    margin-top: 10px;
 }
