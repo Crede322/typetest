@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Keys = ({ width, height, color, borderRadius, border, marginTop, boxShadow, position, text, ruText, leftKey, keyPosition}) => {
+const Keys = ({ width, height, borderRadius, border, marginTop, 
+boxShadow, position, text, ruText, leftKey, keyPosition, bgcolor}) => {
     const keyStyle = {
         position,
         boxShadow,
@@ -9,10 +10,10 @@ const Keys = ({ width, height, color, borderRadius, border, marginTop, boxShadow
         borderRadius,
         width,
         height,
-        backgroundColor: color,
+        backgroundColor:bgcolor,
     };
     const leftStyle = {
-        left : leftKey,
+        left: leftKey,
     }
     const keyPositionStyles = {
         marginTop: keyPosition,
@@ -20,7 +21,8 @@ const Keys = ({ width, height, color, borderRadius, border, marginTop, boxShadow
 
     return (
         <div style={keyStyle}>
-            <h2 style={keyPositionStyles}>{text}</h2><h3 style={leftStyle}>{ruText}</h3>
+            <h2 style={keyPositionStyles}>{text}</h2>
+            <h3 style={leftStyle}>{ruText}</h3>
         </div>
     );
 };
