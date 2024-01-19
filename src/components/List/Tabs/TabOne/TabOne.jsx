@@ -4,8 +4,8 @@ import Keys from '../Keys';
 
 const TabOne = () => {
     
-let keyData1 = [
-    {text: '`', ruText: 'ё', leftKey: 30, bgcolor:''},
+const keyData1 = [
+    {text: '`', ruText: 'ё', leftKey: 30},
     {text: '1', keyPosition:12},
     {text: '2', keyPosition:12},
     {text: '3', keyPosition:12},
@@ -19,8 +19,8 @@ let keyData1 = [
     {text: '-', keyPosition:10},
     {text: '=', keyPosition:10}
 ]
-let keyData2 = [
-    {text:'Tab',keyPosition:12,width:80},
+const keyData2 = [
+    {text:'Tab',keyPosition:12,width:80, id:'tab'},
     {text: 'Q', ruText: 'й'},
     {text: 'W', ruText: 'ц'},
     {text: 'E', ruText: 'у'},
@@ -34,8 +34,8 @@ let keyData2 = [
     {text: '[', ruText: 'х'},
     {text: ']', ruText: 'ъ'},
 ]
-let keyData3 = [
-    {text:'Caps', keyPosition:12,width:120},
+const keyData3 = [
+    {text:'Caps', keyPosition:12,width:120, id:'caps'},
     {text: 'A', ruText: 'ф'},
     {text: 'S', ruText: 'ы'},
     {text: 'D', ruText: 'в'},
@@ -48,9 +48,9 @@ let keyData3 = [
     {text: ';', ruText: ': ж'},
     {text: '"', ruText: 'э'},
     {text: 'I', ruText: '\\'}
-]
-let keyData4 = [
-    {text:'Shift', keyPosition:12,width:150},
+];
+const keyData4 = [
+    {text:'Shift', keyPosition:12,width:150, id:'leftshift'},
     {text: 'Z', ruText: 'я'},
     {text: 'X', ruText: 'ч'},
     {text: 'C', ruText: 'с'},
@@ -58,27 +58,28 @@ let keyData4 = [
     {text: 'B', ruText: 'и'},
     {text: 'N', ruText: 'т'},
     {text: 'M', ruText: 'ь'},
-    {text: '<', ruText: ',б', leftKey:33},
-    {text: '>', ruText: '.ю', leftKey:28},
-    {text: '/', ruText: '.'},
-    {text:'Shift', keyPosition:12,width:210}
-]
-let keyData5 = [
-    {text:'Ctrl',width:90,keyPosition:12},
+    {text: '<', ruText: ',б', leftKey:33, id:'leftarrow'},
+    {text: '>', ruText: 'ю', leftKey:28, id:'rightarrow'},
+    {text: '/', ruText: '?', id:'key191'},
+    {text:'Shift', keyPosition:12,width:210, id:'rightshift'}
+];
+const keyData5 = [
+    {text:'Ctrl',width:90,keyPosition:12, id:'leftControl'},
+    {id:'meta'},
+    {text: 'Alt', width:60,keyPosition:12, id:'leftalt'},
+    {width:520, id: 'space'},
+    {text: 'Alt', width:60, keyPosition:12, id:'rightalt'},
     {},
-    {text: 'Alt', width:60,keyPosition:12},
-    {width:520},{text: 'Alt', width:60, keyPosition:12},
-    {},
-    {},
-    {text:'Ctrl',width:90,keyPosition:12}
-]
+    {id:'contextmenu'},
+    {text:'Ctrl',width:90,keyPosition:12, id:'rightControl'}
+];
 
 const [keyDataArray, setKeyDataArray] = useState ([
-    ...keyData1,
-    ...keyData2,
-    ...keyData3,
-    ...keyData4,
-    ...keyData5
+...keyData1,
+...keyData2,
+...keyData3,
+...keyData4,
+...keyData5,
 ]);
 
 const [pressedKey, setPressedKey] = useState(null);
@@ -90,30 +91,56 @@ useEffect(() => {
     };
 },);
 
-const handleKeyDown = (event) => {
-    const key = event.key;
-    setPressedKey(key);
-    
-    setKeyDataArray((prevKeyDataArray) => {
-        return prevKeyDataArray.map((keyData) => {
-            if (keyData.text === key) {
-                return { ...keyData, bgcolor: 'red'};
-            }
-            return keyData;
-        })
-    })
-};
-
-useEffect(() => {
-    console.log(keyDataArray);
-}, [keyDataArray]);
+  const handleKeyDown = (event) => {
+      const keyCode = event.keyCode
+      const key = event.key.toUpperCase();
+      const ruKey = event.key.toLowerCase();
+      setPressedKey(key);
+    const location = event.location;
+    const updatedKeyDataArray = keyDataArray.map((item) => {
+        if (item.text === key || item.ruText === ruKey) {
+            return {...item, bgcolor: 'red'};
+        } else if (key === 'TAB' && item.id === 'tab') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'CAPSLOCK' && item.id === 'caps') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'SHIFT' && location === 1 && item.id === 'leftshift') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'SHIFT' && location === 2 && item.id === 'rightshift') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'CONTROL' && location === 1 && item.id === 'leftControl') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'CONTROL' && location === 2 && item.id === 'rightControl') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'ALT' && location === 1 && item.id === 'leftalt') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'ALT' && location === 2 && item.id === 'rightalt') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'META' && item.id === 'meta') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === ' ' && item.id === 'space') {
+      return { ...item, bgcolor: 'red' };
+        } else if (key === 'CONTEXTMENU' && item.id === 'contextmenu') {
+      return { ...item, bgcolor: 'red' };
+        } else if ((key === ',' || key === 'Б') && item.id === 'leftarrow' ) {
+      return { ...item, bgcolor: 'red'};
+        } else if (keyCode === 190 && item.id === 'rightarrow' ) {
+      return { ...item, bgcolor: 'red'};
+        } else if (keyCode === 191 && item.id === 'key191' ) {
+      return { ...item, bgcolor: 'red'};
+        }
+        return item;
+    });
+    console.log(key)
+    setKeyDataArray(updatedKeyDataArray);
+  };
 
 return (
     <div>
             <div className={classes.tabOne__wrapper}>
                 <div className={classes.keyboard}>
                     <ul>
-                        {keyData1.map((data, index) => (
+                        {keyDataArray.slice(0, 13).map((data, index) => (
                         <Keys
                             bgcolor={data.bgcolor}
                             key={index}
@@ -125,7 +152,7 @@ return (
                     </ul>
 
                     <ul className={classes.keyRow}>
-                        {keyData2.map((data, index) => (
+                        {keyDataArray.slice(13, 26).map((data, index) => (
                         <Keys
                             bgcolor={data.bgcolor}
                             key={index}
@@ -139,7 +166,7 @@ return (
                     </ul>
 
                     <ul className={classes.keyRow}>
-                        {keyData3.map((data, index) => (
+                        {keyDataArray.slice(26, 39).map((data, index) => (
                         <Keys
                             bgcolor={data.bgcolor}
                             key={index}
@@ -152,7 +179,7 @@ return (
                     </ul>
 
                     <ul className={classes.keyRow}>
-                        {keyData4.map((data, index) => (
+                        {keyDataArray.slice(39, 51).map((data, index) => (
                         <Keys
                             bgcolor={data.bgcolor}
                             key={index}
@@ -165,7 +192,7 @@ return (
                     </ul>
 
                     <ul className={classes.keyRow}>
-                        {keyData5.map((data, index) => (
+                        {keyDataArray.slice(51, 59).map((data, index) => (
                         <Keys
                             bgcolor={data.bgcolor}
                             key={index}
