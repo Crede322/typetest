@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Keys = ({ width, height, borderRadius, border, marginTop, 
-boxShadow, position, text, ruText, leftKey, keyPosition, bgcolor, id}) => {
+boxShadow, position, text, ruText, leftKey, keyPosition, bgcolor, id, transition}) => {
     const keyStyle = {
         position,
         boxShadow,
@@ -12,6 +12,7 @@ boxShadow, position, text, ruText, leftKey, keyPosition, bgcolor, id}) => {
         height,
         backgroundColor:bgcolor,
         id,
+        transition: 'all 0.4s'
     };
     const leftStyle = {
         left: leftKey,
