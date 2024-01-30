@@ -7,9 +7,10 @@
 
     --Text: #86969C;
     --Gray: #B8C6CF;
-    --Accent: #7A5CFA;
     --Accent: rgb(53, 29, 163);
-
+    --Blue: rgb(0, 39, 211);
+    --Red: rgb(225, 0, 0);
+    --Green: rgb(16, 185, 129);
 }
 
 :root {

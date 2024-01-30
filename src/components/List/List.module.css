@@ -1,7 +1,3 @@
-.list__wrapper {
-
-}
-
 .list {
     border: 4px solid black;
     border-radius: 15px 15px 0 0;
@@ -10,10 +6,7 @@
     background-color: #fff;
     padding-top: 25px;
     padding-bottom: 25px;
-}
-
-.list li {
-    
+    width: 1255px;
 }
 
 .list__button {
@@ -52,7 +45,7 @@
 }
 
 .button__two {
-    border-color: var(--Accent);
+    border-color: var(--Blue);
     color: #000;
     position: relative;
 }
@@ -63,14 +56,14 @@
     position: absolute;
     bottom: -31px;
     left: -23%;
-    background-color: var(--Accent);
+    background-color: var(--Blue);
     height: 4px;
     width: 200px;
     pointer-events: none;
 }
 
 .button__three {
-    border-color: var(--Accent);
+    border-color: var(--Red);
     color: #000;
     position: relative;
 }
@@ -81,14 +74,14 @@
     position: absolute;
     bottom: -31px;
     left: -18px;
-    background-color: var(--Accent);
+    background-color: var(--Red);
     height: 4px;
     width: 270px;
     pointer-events: none;
 }
 
 .button__four {
-    border-color: var(--Accent);
+    border-color: var(--Green);
     color: #000;
     position: relative;
 }
@@ -99,7 +92,7 @@
     position: absolute;
     bottom: -31px;
     left: -18px;
-    background-color: var(--Accent);
+    background-color: var(--Green);
     height: 4px;
     width: 160px;
     pointer-events: none;

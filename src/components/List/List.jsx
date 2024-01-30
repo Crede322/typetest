@@ -1,29 +1,36 @@
 import React from 'react';
 import classes from "./List.module.css"
 import { useContext } from 'react';
-
 import { TabContext } from '../../context/TabContext.tsx'
 
 const List = () => {
 
-const { toggleButton, setToggleButton } = useContext(TabContext);
+const { toggleButton, setToggleButton, setMainColor, setDisplayText } = useContext(TabContext);
 
 
 const btnOne = () => {
-    setToggleButton(0)
-    console.log('1')
+    setToggleButton(0);
+    console.log('1');
+    setMainColor('rgba(53, 29, 163, 0.7)');
+    setDisplayText('');
 }
 const btnTwo = () => {
-    setToggleButton(1)
-    console.log('2')
+    setToggleButton(1);
+    console.log('2');
+    setMainColor('rgba(0, 39, 211, 0.7)');
+    setDisplayText('');
 }
 const btnThree = () => {
-    setToggleButton(2)
-    console.log('3')
+    setToggleButton(2);
+    console.log('3');
+    setMainColor('rgba(255, 0, 0, 0.9)');
+    setDisplayText('');
 }
 const btnFour = () => {
-    setToggleButton(3)
-    console.log('4')
+    setToggleButton(3);
+    console.log('4');
+    setMainColor('rgba(16, 185, 129, 0.7)');
+    setDisplayText('');
 }
 
     return (

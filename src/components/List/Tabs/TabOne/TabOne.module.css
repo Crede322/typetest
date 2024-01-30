@@ -8,7 +8,11 @@
 }
 
 .keyboard {
+    margin: auto;
     padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 1100px;
 }
 
 .keyboard ul {
@@ -41,106 +45,6 @@
     margin-top: 10px;
 }
 
-.figure {
-position: absolute;
-right: 147px;
-width: 140px;
-height: 60px;
-border-radius: 4px;
-box-shadow: rgba(53, 29, 163, 0.0) 0px 54px 55px, rgba(53, 29, 163, 0.24) 0px -12px 30px, rgba(53, 29, 163, 0.30) 0px 4px 6px, rgba(53, 29, 163, 0.15) 0px 12px 13px, rgba(53, 29, 163, 0.15) 0px -3px 5px;
-}
-
-.figure2 {
-position: absolute;
-right: 147px;
-width: 140px;
-height: 60px;
-border-radius: 4px;
-background-color: #fff;
-}
-
-.figure2::after {
-content: '';
-position: absolute;
-top: 58px;
-right: 0;
-display: block;
-width: 100px;
-height: 72px;
-border-radius: 4px;
-background-color: #fff;
-}
-
-.figure2::before {
-font-size: 36px;
-content: '\00a0\00a0\00a0↵';
-display: block;
-position: absolute;
-background-color: #fff;
-height: 20px;
-width: 100px;
-right: 0;
-top: 58px;
-z-index: 1;
-}
-
-.figure::after {
-content: '';
-position: absolute;
-top: 60px;
-right: 0;
-display: block;
-width: 100px;
-height: 70px;
-border-radius: 4px;
-box-shadow: rgba(53, 29, 163, 0.0) 0px 54px 55px, rgba(53, 29, 163, 0.24) 0px -12px 30px, rgba(53, 29, 163, 0.30) 0px 4px 6px, rgba(53, 29, 163, 0.15) 0px 12px 13px, rgba(53, 29, 163, 0.15) 0px -3px 5px;
-}
-
-.colorFigure {
-background-color: rgba(53, 29, 163, 0.7);
-position: absolute;
-right: 147px;
-width: 140px;
-height: 60px;
-border-radius: 4px;
-box-shadow: rgba(53, 29, 163, 0.0) 0px 54px 55px, rgba(53, 29, 163, 0.24) 0px -12px 30px, rgba(53, 29, 163, 0.30) 0px 4px 6px, rgba(53, 29, 163, 0.15) 0px 12px 13px, rgba(53, 29, 163, 0.15) 0px -3px 5px;
-}
-
-.colorFigure::after {
-background-color: rgba(53, 29, 163, 0.7);
-content: '';
-position: absolute;
-top: 60px;
-right: 0;
-display: block;
-width: 100px;
-height: 70px;
-border-radius: 4px;
-box-shadow: rgba(53, 29, 163, 0.0) 0px 54px 55px, rgba(53, 29, 163, 0.24) 0px -12px 30px, rgba(53, 29, 163, 0.30) 0px 4px 6px, rgba(53, 29, 163, 0.15) 0px 12px 13px, rgba(53, 29, 163, 0.15) 0px -3px 5px;
-}
-
-.colorFigure2 {
-position: absolute;
-right: 147px;
-width: 140px;
-height: 60px;
-border-radius: 4px;
-background-color: rgba(53, 29, 163, 0.7);
-}
-
-.colorFigure2::before {
-font-size: 36px;
-content: '\00a0\00a0\00a0↵';
-display: block;
-position: absolute;
-background-color: rgba(53, 29, 163, 0.7);
-height: 20px;
-width: 100px;
-right: 0;
-top: 58px;
-z-index: 1;
-}
-
 .enter__wrapper {
     position: relative;
     transition: all 0.4s;
@@ -149,7 +53,7 @@ z-index: 1;
 .enter {
     transition: all 0.4s;
     position: absolute;
-    right: 142px;
-    top: -4px;
+    right: 0px;
+    top: 0px;
     max-height: 140px;
 }

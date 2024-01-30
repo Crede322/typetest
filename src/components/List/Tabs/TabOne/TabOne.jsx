@@ -1,25 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import classes from "./TabOne.module.css";
 import Keys from '../Keys';
-import enter from '../Enter.svg'
-import enterColored from '../EnterColored.svg'
+import Enter from '../Enter.svg';
+import EnterViolet from '../EnterViolet.svg';
+import EnterBlue from '../EnterBlue.svg';
+import EnterRed from '../EnterRed.svg';
+import EnterGreen from '../EnterGreen.svg';
+import { TabContext } from '../../../../context/TabContext.tsx';
 
 const TabOne = () => {
 
     const initialState = {};
     const [state, setState] = useState(initialState);
+    const {setLastKey, mainColor, displayText, setDisplayText} = useContext(TabContext);
 
-    const keysIdArray = [192,49,50,51,52,53,54,55,56,57,58,48,189,187,8,9,81,87,69,82,84,89,85,73,79,80,219,221,20,65,83,68,70,71,72,74,75,76,186,222,220,13,'leftshift',90,88,67,86,66,78,77,188,190,191,'rightshift','leftcontrol',91,'leftalt',32,'rightalt',46,93,'rightcontrol'];
+    const keysIdArray = [192,49,50,51,52,53,54,55,56,57,58,48,189,
+        187,8,9,81,87,69,82,84,89,85,73,79,80,219,221,20,65,83,68,
+        70,71,72,74,75,76,186,222,220,13,'leftshift',90,88,67,86,
+        66,78,77,188,190,191,'rightshift','leftcontrol',91,'leftalt',
+        32,'rightalt',46,93,'rightcontrol'];
 
     const stateObjects = keysIdArray.reduce((acc, key) => {
     const stateName = `colorState${key}`;
     const stateSetterName = `setColorState${key}`;
     acc[stateName] = state[stateName] || '#fff';
     acc[stateSetterName] = (newState) => {
-      setState(prevState => ({ ...prevState, [stateName]: newState }));
+        setState(prevState => ({ ...prevState, [stateName]: newState }));
     };
     return acc;
-  }, {});
+}, {});
 
 const keyData1 = [
     {text: '`', ruText: 'ё', leftKey: 30, id:192,bgcolor:stateObjects.colorState192},
@@ -92,8 +101,6 @@ const keyData5 = [
     {text:'Ctrl',width:90,keyPosition:16, id:'rightcontrol',bgcolor:stateObjects.colorStaterightcontrol}
 ];
 
-const [pressedKey, setPressedKey] = useState(null);
-
 useEffect(() => {
       document.addEventListener('keydown', handleKeyDown);
       return () => {
@@ -103,20 +110,21 @@ useEffect(() => {
 );
 
 const handleKeyDown = (event) => {
+
     const keyCode = event.keyCode
     const key = event.key
     const location = event.location
+
+    if (key === displayText[0]) {
+        setDisplayText(displayText.substring(1));
+    }
 
 const stateSetterName = `setColorState${keyCode}`;
   const setColorState = stateObjects[stateSetterName];
   
   if (setColorState) {
-    setColorState('rgba(53, 29, 163, 0.7)');
-  }
-
-  if (setColorState) {
-
-  setTimeout(() => {
+    setColorState(mainColor);
+    setTimeout(() => {
     setColorState('#fff');
   }, 500);
 }
@@ -158,16 +166,20 @@ function colorSwitch(color) {
 
 }
 
-colorSwitch('rgba(53, 29, 163, 0.7)');
-  setTimeout(() => {
+colorSwitch(mainColor);
+setTimeout(() => {
     colorSwitch('#fff');
-  }, 500);
+}, 500);
 
-  console.log(key);
   console.log(keyCode);
-  console.log(stateObjects);
-  setPressedKey(key);
+  setLastKey(key);
 };
+
+const enterSrc = 
+stateObjects.colorState13 === 'rgba(53, 29, 163, 0.7)' ? EnterViolet : 
+stateObjects.colorState13 === 'rgba(0, 39, 211, 0.7)' ? EnterBlue :
+stateObjects.colorState13 === 'rgba(255, 0, 0, 0.9)' ? EnterRed :
+stateObjects.colorState13 === 'rgba(16, 185, 129, 0.7)' ? EnterGreen : Enter
 
 return (
     <div>
@@ -197,7 +209,7 @@ return (
                             keyPosition={data.keyPosition}
                             width={data.width}
                         />))}
-                        <div><img src={stateObjects.colorState13 === 'rgba(53, 29, 163, 0.7)' ? enterColored : enter} alt="Enter" className={classes.enter}/></div>
+                        <div><img src={enterSrc} alt='Enter' className={classes.enter}/></div>
                     </ul>
 
                     <ul className={classes.keyRow}>
@@ -240,7 +252,6 @@ return (
                     </ul>
                 </div>
             </div>
-            <h2>{pressedKey}</h2>
         </div>
     );
 };
