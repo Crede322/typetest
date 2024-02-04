@@ -5,6 +5,7 @@
     border-top: none;
     border-radius: 0 0 15px 15px;
     background-color: #fff;
+    margin: auto;
 }
 
 .keyboard {
@@ -43,6 +44,7 @@
 
 .keyRow {
     margin-top: 10px;
+    overflow: visible;
 }
 
 .enter__wrapper {
