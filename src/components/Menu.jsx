@@ -78,6 +78,7 @@ useEffect(() => {
     setToggleSPM(staticDisplayLength.current - displayText.length)
   }, [seconds])
 
+
 function generateRandomSentence(sentencesCount) {
   const sentences = [];
   for (let i = 0; i < sentencesCount; i++) {
