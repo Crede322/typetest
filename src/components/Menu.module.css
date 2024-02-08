@@ -69,7 +69,7 @@
 
 .typing__buttons1 h2 {
     z-index: 4;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .paste {
@@ -162,17 +162,19 @@ margin-left: 25px;
   align-items: center;
   overflow: hidden;
   position: relative;
+  border: 3px solid black;
 }
 
 .timer__off {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: red;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border: 3px solid black;
 }
 .timer::before {
     content: '';
