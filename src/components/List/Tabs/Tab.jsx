@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useContext} from 'react';
-import classes from "./TabOne.module.css";
-import Keys from '../Keys';
-import Enter from '../Enter.svg';
-import EnterViolet from '../EnterViolet.svg';
-import EnterBlue from '../EnterBlue.svg';
-import EnterRed from '../EnterRed.svg';
-import EnterGreen from '../EnterGreen.svg';
-import { TabContext } from '../../../../context/TabContext.tsx';
+import classes from "./Tab.module.css";
+import Keys from './Keys.jsx';
+import Enter from './Enter.svg';
+import EnterViolet from './EnterViolet.svg';
+import EnterBlue from './EnterBlue.svg';
+import EnterRed from './EnterRed.svg';
+import EnterGreen from './EnterGreen.svg';
+import { TabContext } from './../../../context/TabContext.tsx';
 
-const TabOne = () => {
+const Tab = () => {
 
     const initialState = {};
     const [state, setState] = useState(initialState);
@@ -171,7 +171,6 @@ setTimeout(() => {
     colorSwitch('#fff');
 }, 500);
 
-  console.log(keyCode);
   setLastKey(key);
 };
 
@@ -256,4 +255,4 @@ return (
     );
 };
 
-export default TabOne;
+export default Tab;
