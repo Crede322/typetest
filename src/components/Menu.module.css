@@ -69,7 +69,7 @@
 
 .typing__buttons1 h2 {
     z-index: 4;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .paste {
@@ -149,7 +149,9 @@
 }
 
 .timer__wrapper {
-margin-left: 25px;
+margin-left: 5px;
+margin-top: 12px;
+display: flex;
 }
 
 .timer {

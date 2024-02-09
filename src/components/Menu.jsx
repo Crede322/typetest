@@ -35,8 +35,8 @@ const handleClickClipboard = async () => {
       console.error('Ошибка при чтении буфера обмена:', error);
     }
     setSeconds(120);
-    setToggleTimerState(false);
     setIsMounted(true);
+    setToggleTimerState(false);
   };
 
 useEffect(() => {
@@ -46,9 +46,10 @@ useEffect(() => {
 useEffect(() => {
   if (displayText.length < staticDisplayLength.current) {
     setToggleTimerState(true);
-  } else if (displayText.length === 1) {
+  } else if (displayText.length === 0) {
     setToggleTimerState(false);
     setSeconds(120);
+    setToggleSPM(0);
   }
 }, [displayText])
   
@@ -116,12 +117,15 @@ const closePopup = () => {
               <div className={classes.typing}>
                   <div className={classes.typing__buttons1}>
                     <div className={classes.timer__wrapper}>
-                    {toggleTimerState ?
+
+                      <h2 style={{display: toggleButton !== 0 ? 'block' : 'none', margin: '6px 10px 0 0'}}>sp/m<br/>&nbsp;&nbsp;&nbsp;{toggleSPM}</h2>
+                      <div style={{display: toggleButton !== 0 ? 'block' : 'none'}}>
+                        {toggleTimerState ?
                         <div className={classes.timer}>
                         <div className={classes.timer__line}/>
                         </div>: 
-                      <div className={classes.timer__off}/>}
-                    <h2>sp/m {toggleSPM}</h2>
+                        <div className={classes.timer__off}/>}
+                      </div>
                     </div>
                   </div>
                   <div className={classes.title}>
