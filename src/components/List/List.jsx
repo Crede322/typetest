@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from "./List.module.css"
 import { useContext } from 'react';
 import { TabContext } from '../../context/TabContext.tsx'
 
 const List = () => {
 
-const { toggleButton, setToggleButton, setMainColor, setDisplayText } = useContext(TabContext);
+const { toggleButton, setToggleButton, setMainColor, setDisplayText, setToggleTimerState } = useContext(TabContext);
 
+useEffect(() => {
+    setToggleTimerState(false);
+}, toggleButton)
 
 const btnOne = () => {
     setToggleButton(0);

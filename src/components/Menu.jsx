@@ -9,10 +9,9 @@ import { faker } from '@faker-js/faker'
 
 const Menu = () => {
 
-const {toggleButton, lastKey, displayText, setDisplayText} = useContext(TabContext);
+const {toggleButton, lastKey, displayText, setDisplayText,toggleTimerState, setToggleTimerState} = useContext(TabContext);
 const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
 const [isMounted, setIsMounted] = useState(false);
-const [toggleTimerState, setToggleTimerState] = useState(false);
 const [seconds, setSeconds] = useState(120);
 const [toggleSPM, setToggleSPM] = useState(0)
 const staticDisplayLength = useRef(0);
@@ -36,17 +35,18 @@ const handleClickClipboard = async () => {
     }
     setSeconds(120);
     setIsMounted(true);
-    setToggleTimerState(false);
+    // setToggleTimerState(false);
   };
 
 useEffect(() => {
-  staticDisplayLength.current = displayText.length
+  staticDisplayLength.current = displayText.length;
+  setIsMounted(false);
 }, [isMounted])
 
 useEffect(() => {
   if (displayText.length < staticDisplayLength.current) {
     setToggleTimerState(true);
-  } else if (displayText.length === 0) {
+  } else if (displayText.length < 1) {
     setToggleTimerState(false);
     setSeconds(120);
     setToggleSPM(0);
@@ -120,7 +120,9 @@ const closePopup = () => {
 
                       <h2 style={{display: toggleButton !== 0 ? 'block' : 'none', margin: '6px 10px 0 0'}}>sp/m<br/>&nbsp;&nbsp;&nbsp;{toggleSPM}</h2>
                       <div style={{display: toggleButton !== 0 ? 'block' : 'none'}}>
-                        {toggleTimerState ?
+                        {
+                        // toggleTimerState || 
+                        displayText !== "1" ?
                         <div className={classes.timer}>
                         <div className={classes.timer__line}/>
                         </div>: 
