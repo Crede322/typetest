@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState, useMemo, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import classes from "./Menu.module.css"
 import List from "./List/List"
 import Tab from './List/Tabs/Tab.jsx';
 import pasteImg from '../img/paste.svg'
 import libImg from '../img/lib.svg'
 import { TabContext } from '../context/TabContext.tsx';
-import { faker } from '@faker-js/faker'
+import { fakerRU } from '@faker-js/faker';
 
 const Menu = () => {
 
@@ -59,7 +59,7 @@ useEffect(() => {
 useEffect(() => {
   if (displayText.length < staticDisplayLength.current) {
     setToggleTimerState(true);
-  } else if (displayText.length < 1) {
+  } else if (displayText.length === 1) {
     resetToDefaults();
   }
 }, [displayText])
@@ -72,8 +72,8 @@ useEffect(() => {
       setSeconds(prevSeconds => {
         if (prevSeconds === 0) {
           clearInterval(SPMinterval);
-          setSeconds(120);
-          setToggleTimerState(false);
+          resetToDefaults();
+          setDisplayText('');
           return 120;
         }
         return prevSeconds - 1;
@@ -87,25 +87,13 @@ useEffect(() => {
 }, [toggleTimerState]);
 
   useEffect(() => {
-    setToggleSPM(staticDisplayLength.current - displayText.length)
+    setToggleSPM(staticDisplayLength.current - displayText.length);
   }, [seconds])
 
-
-function generateRandomSentence(sentencesCount) {
-  const sentences = [];
-  for (let i = 0; i < sentencesCount; i++) {
-    const sentence = [];
-    sentence.push(faker.commerce.productAdjective());
-    sentence.push(faker.commerce.productMaterial());
-    sentence.push(faker.commerce.productName());
-    sentences.push(sentence.join(' '));
-  }
-  return sentences;
-}
-
 const handleRandomClick = () => {
-    setDisplayText(generateRandomSentence(20).join(' '));
-    console.log(displayText);
+    const generatedText = fakerRU.lorem.text(1000, { language: 'en'}) ;
+    setIsMounted(true);
+    setDisplayText(generatedText);
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
 }
 
@@ -129,8 +117,8 @@ const closePopup = () => {
                   <div className={classes.typing__buttons1}>
                     <div className={classes.timer__wrapper}>
 
-                      <h2 style={{display: toggleButton !== 0 ? 'block' : 'none', margin: '6px 10px 0 0'}}>sp/m<br/>&nbsp;&nbsp;&nbsp;{toggleSPM}</h2>
-                      <div style={{display: toggleButton !== 0 ? 'block' : 'none'}}>
+                      <h2 style={{display: toggleButton === 1 ? 'block' : 'none', margin: '6px 10px 0 0'}}>sp/m<br/>&nbsp;&nbsp;&nbsp;{toggleSPM}</h2>
+                      <div style={{display: toggleButton === 1 ? 'block' : 'none'}}>
                         {toggleTimerState ?
                         <div className={classes.timer}>
                         <div className={classes.timer__line}/>
