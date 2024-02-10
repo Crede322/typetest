@@ -5,11 +5,7 @@ import { TabContext } from '../../context/TabContext.tsx'
 
 const List = () => {
 
-const { toggleButton, setToggleButton, setMainColor, setDisplayText, setToggleTimerState } = useContext(TabContext);
-
-useEffect(() => {
-    setToggleTimerState(false);
-}, toggleButton)
+const { toggleButton, setToggleButton, setMainColor, setDisplayText, setToggleTimerState, setSeconds } = useContext(TabContext);
 
 const btnOne = () => {
     setToggleButton(0);

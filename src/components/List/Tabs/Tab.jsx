@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
 import classes from "./Tab.module.css";
 import Keys from './Keys.jsx';
+import { TabContext } from './../../../context/TabContext.tsx';
 import Enter from './Enter.svg';
 import EnterViolet from './EnterViolet.svg';
 import EnterBlue from './EnterBlue.svg';
 import EnterRed from './EnterRed.svg';
 import EnterGreen from './EnterGreen.svg';
-import { TabContext } from './../../../context/TabContext.tsx';
 
 const Tab = () => {
 

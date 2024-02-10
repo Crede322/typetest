@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useMemo, useRef } from 'react';
 import classes from "./Menu.module.css"
 import List from "./List/List"
+import Tab from './List/Tabs/Tab.jsx';
 import pasteImg from '../img/paste.svg'
 import libImg from '../img/lib.svg'
-import Tab from './List/Tabs/Tab.jsx';
 import { TabContext } from '../context/TabContext.tsx';
 import { faker } from '@faker-js/faker'
 
 const Menu = () => {
 
-const {toggleButton, lastKey, displayText, setDisplayText,toggleTimerState, setToggleTimerState} = useContext(TabContext);
+const {toggleButton, lastKey, displayText, setDisplayText, 
+toggleTimerState, setToggleTimerState, seconds, setSeconds} = useContext(TabContext);
 const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
 const [isMounted, setIsMounted] = useState(false);
-const [seconds, setSeconds] = useState(120);
-const [toggleSPM, setToggleSPM] = useState(0)
+const [toggleSPM, setToggleSPM] = useState(0);
 const staticDisplayLength = useRef(0);
 
   const switchTypeText = toggleButton === 0 ? (
@@ -26,6 +26,13 @@ const staticDisplayLength = useRef(0);
     <pre>{displayText}</pre>
   ) : null;
 
+const resetToDefaults = () => {
+    setSeconds(120);
+    setIsMounted(true);
+    setToggleTimerState(false);
+    staticDisplayLength.current = 0;
+}
+
 const handleClickClipboard = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -33,10 +40,16 @@ const handleClickClipboard = async () => {
     } catch (error) {
       console.error('Ошибка при чтении буфера обмена:', error);
     }
+    resetToDefaults();
+  };
+
+  useEffect(() => {
+  if (toggleButton !== 0) {
     setSeconds(120);
     setIsMounted(true);
-    // setToggleTimerState(false);
-  };
+    setToggleTimerState(false);
+  }
+}, [toggleButton]);
 
 useEffect(() => {
   staticDisplayLength.current = displayText.length;
@@ -47,9 +60,7 @@ useEffect(() => {
   if (displayText.length < staticDisplayLength.current) {
     setToggleTimerState(true);
   } else if (displayText.length < 1) {
-    setToggleTimerState(false);
-    setSeconds(120);
-    setToggleSPM(0);
+    resetToDefaults();
   }
 }, [displayText])
   
@@ -120,9 +131,7 @@ const closePopup = () => {
 
                       <h2 style={{display: toggleButton !== 0 ? 'block' : 'none', margin: '6px 10px 0 0'}}>sp/m<br/>&nbsp;&nbsp;&nbsp;{toggleSPM}</h2>
                       <div style={{display: toggleButton !== 0 ? 'block' : 'none'}}>
-                        {
-                        // toggleTimerState || 
-                        displayText !== "1" ?
+                        {toggleTimerState ?
                         <div className={classes.timer}>
                         <div className={classes.timer__line}/>
                         </div>: 
