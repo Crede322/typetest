@@ -70,6 +70,7 @@
 .typing__buttons1 h2 {
     z-index: 4;
     font-size: 24px;
+    width: 60px;
 }
 
 .paste {
