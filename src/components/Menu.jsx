@@ -29,12 +29,7 @@ const switchTypeText = toggleButton === 0 ? (
   ) : null;
 
 const resetToDefaults = () => {
-    setSeconds(120);
     setIsMounted(!isMounted);
-    setToggleTimerState(false);
-    if (lastSPM.current) {
-      setDisplayText(lastSPM.current);
-    }
 }
 
 const handleClickClipboard = async () => {
@@ -48,54 +43,9 @@ const handleClickClipboard = async () => {
 };
 
 useEffect(() => {
-  if (toggleButton !== 0) {
-    setSeconds(120);
-    setIsMounted(!isMounted);
-    setToggleTimerState(false);
-  }
-}, [toggleButton]);
-
-useEffect(() => {
   staticDisplayLength.current = displayText.length;
   setIsMounted(false);
 }, [isMounted])
-
-useEffect(() => {
-  if (displayText.length < staticDisplayLength.current) {
-    setToggleTimerState(true);
-  } else if (displayText.length === 1) {
-    resetToDefaults();
-  }
-}, [displayText])
-  
-useEffect(() => {
-  let SPMinterval;
-
-  if (toggleTimerState) {
-    SPMinterval = setInterval(() => {
-      setSeconds(prevSeconds => {
-      if (prevSeconds === 0) {
-        resetToDefaults();
-        clearInterval(SPMinterval);
-          return 120;
-        } else {return prevSeconds - 1};
-      });
-    }, 500);
-  }
-
-  return () => {
-    clearInterval(SPMinterval);
-  };
-}, [toggleTimerState]);
-
-useEffect(() => {
-  setToggleSPM(staticDisplayLength.current - displayText.length);
-  if (isNaN(toggleSPM)) {
-    setToggleSPM(0);
-  }
-  if (seconds < 1) { 
-  lastSPM.current = toggleSPM}
-}, [seconds])
 
 const handleRandomClick = () => {
     let generatedText = '';
@@ -103,7 +53,6 @@ const handleRandomClick = () => {
         generatedText += fakerRU.lorem.sentence();
     }
     setDisplayText(generatedText);
-    resetToDefaults();
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
 }
 
