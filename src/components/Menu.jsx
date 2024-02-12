@@ -61,6 +61,7 @@ useEffect(() => {
       setSeconds(prevSeconds => {
         const updatedSeconds = prevSeconds - 1;
         if (updatedSeconds === 1) {
+          setIsMounted(false);
           setDisplayText('');
           setToggleTimerState(false);
           clearInterval(interval);
