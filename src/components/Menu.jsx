@@ -15,45 +15,73 @@ toggleTimerState, setToggleTimerState, seconds, setSeconds} = useContext(TabCont
 const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
 const [isMounted, setIsMounted] = useState(false);
 const [toggleSPM, setToggleSPM] = useState(0);
-const lastSPM = useRef(0);
 const staticDisplayLength = useRef(0);
-
+const [pause, setPause] = useState(true);
 const switchTypeText = toggleButton === 0 ? (
     <div className={classes.lastKey}><h2>{lastKey}</h2></div>
   ) : toggleButton === 1 ? (
-    <pre>{displayText}</pre>
+    <pre>{pause ? 'выберите режим' : displayText}</pre>
   ) : toggleButton === 2 ? (
     <pre>{displayText}</pre>
   ) : toggleButton === 3 ? (
     <pre>{displayText}</pre>
   ) : null;
 
-const resetToDefaults = () => {
-    setIsMounted(!isMounted);
-}
-
 const handleClickClipboard = async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      setDisplayText(text);
-    } catch (error) {
-      console.error('Ошибка при чтении буфера обмена', error);
-    }
-    resetToDefaults();
+  try {
+    const text = await navigator.clipboard.readText();
+    setDisplayText(text);
+  } catch (error) {
+    console.error('Ошибка при чтении буфера обмена', error);
+  }
+  setPause(false);
+  setIsMounted(true);
 };
 
 useEffect(() => {
-  staticDisplayLength.current = displayText.length;
-  setIsMounted(false);
-}, [isMounted])
+  if (isMounted) {
+    staticDisplayLength.current = displayText.length;
+    setIsMounted(false);
+    console.log('юзЭфект с маунтед')
+    }
+}, [isMounted]);
+
+useEffect(() => {
+  if (staticDisplayLength.current > displayText.length) {
+      setToggleTimerState(true)
+        console.log('юзЭфект с поставлением таймерстейта')
+  }
+}, [displayText]);
+
+useEffect(() => {
+  let interval;
+
+  if (toggleTimerState) {
+    interval = setInterval(() => {
+      setSeconds(prevSeconds => {
+        const updatedSeconds = prevSeconds - 1;
+        if (updatedSeconds === 1) {
+          setDisplayText('');
+          setToggleTimerState(false);
+          clearInterval(interval);
+        };
+        console.log(updatedSeconds);
+        return updatedSeconds;
+      });
+    }, 1000);
+      console.log('старт интервала')
+  }
+}, [toggleTimerState])
 
 const handleRandomClick = () => {
-    let generatedText = '';
-    while (generatedText.length < 1000) {
-        generatedText += fakerRU.lorem.sentence();
-    }
-    setDisplayText(generatedText);
-    setIsLibraryPopupOpen(!isLibraryPopupOpen);
+  setPause(false);
+  let generatedText = '';
+  while (generatedText.length < 1000) {
+      generatedText += fakerRU.lorem.sentence();
+  }
+  setDisplayText(generatedText);
+  setIsMounted(true);
+  setIsLibraryPopupOpen(!isLibraryPopupOpen);
 }
 
 const handleLibraryClick = () => {

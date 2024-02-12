@@ -32,7 +32,7 @@ const TabContextProvider = ({ children }: { children : ReactNode }) => {
     const [clipBoard, setClipBoard] = useState<string>('');
     const [displayText, setDisplayText] = useState<string[]>([]);
     const [toggleTimerState, setToggleTimerState] = useState(false);
-    const [seconds, setSeconds] = useState(120);
+    const [seconds, setSeconds] = useState(10);
 
     const contextValue: TabsContext = {
         mainColor,
