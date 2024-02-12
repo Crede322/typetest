@@ -1,158 +1,164 @@
 .title {
-    border-radius: 10px;
-    height: 80px;
-    width: 800px;
-    margin: auto;
-    margin-bottom: 25px;
-    font-size: 64px;
-    font-weight: 700;
-    box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 6px 0px inset, rgba(0, 0, 0, 0.3) -3px -3px 6px 1px inset;
-    background-color: #fff;
-    overflow: hidden;
+  border-radius: 10px;
+  height: 80px;
+  width: 800px;
+  margin: auto;
+  margin-bottom: 25px;
+  font-size: 64px;
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 6px 0px inset,
+    rgba(0, 0, 0, 0.3) -3px -3px 6px 1px inset;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .typing {
-    display: flex;
-    width: 1100px;
-    margin: auto;
+  display: flex;
+  width: 1100px;
+  margin: auto;
 }
 
 .title {
-    font-size: 55px;
-    font-weight: 400;
-    white-space: nowrap;
-    position: relative;
+  font-size: 55px;
+  font-weight: 400;
+  white-space: nowrap;
+  position: relative;
 }
 
 .title::after {
-    content: "";
-    position: absolute;
-    background-color: #000;
-    width: 4px;
-    height: 50px;
-    left: 20px;
-    top: 18px;
-    animation: blink 0.8s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
+  content: "";
+  position: absolute;
+  background-color: #000;
+  width: 4px;
+  height: 50px;
+  left: 20px;
+  top: 18px;
+  animation: blink 0.8s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .title pre {
-    margin-left: 30px;
-    text-wrap: nowrap;
-    line-height: 160%;
+  margin-left: 30px;
+  text-wrap: nowrap;
+  line-height: 160%;
 }
 
 .cursor__typing {
-    background-color: #000;
-    width: 4px;
-    height: 50px;
-    position: absolute;
-    left: 360px;
-    top: 100px;
-    animation: blink 0.8s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #000;
+  width: 4px;
+  height: 50px;
+  position: absolute;
+  left: 360px;
+  top: 100px;
+  animation: blink 0.8s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .typing__buttons1 {
-    height: 105px;
-    width: 136px;
+  height: 105px;
+  width: 136px;
 }
 
 .typing__buttons2 {
-    display: flex;
-    height: 105px;
-    width: 136px;
+  display: flex;
+  height: 105px;
+  width: 136px;
 }
 
 .typing__buttons1 h2 {
-    z-index: 4;
-    font-size: 24px;
-    width: 60px;
+  z-index: 4;
+  font-size: 24px;
+  width: 60px;
 }
 
 .paste {
-    margin-right: 20px;
-    margin-top: 16px;
-    width: 48px;
-    height: 48px;
-    transition: all  0.6s;
+  margin-right: 20px;
+  margin-top: 16px;
+  width: 48px;
+  height: 48px;
+  transition: all 0.6s;
 }
 
 .paste img {
-    width: 48px;
-    height: 48px;
-    transition: all  0.6s;
-    cursor: pointer;
+  width: 48px;
+  height: 48px;
+  transition: all 0.6s;
+  cursor: pointer;
 }
 
 .library {
-    margin-right: 20px;
-    margin-top: 16px;
-    width: 48px;
-    height: 48px;
-    transition: all  0.6s;
+  margin-right: 20px;
+  margin-top: 16px;
+  width: 48px;
+  height: 48px;
+  transition: all 0.6s;
 }
 
 .library img {
-    width: 46px;
-    height: 46px;
-    transition: all  0.6s;
-    cursor: pointer;
+  width: 46px;
+  height: 46px;
+  transition: all 0.6s;
+  cursor: pointer;
 }
 
 .lastKey h2 {
-    margin-left: 25px;
-    line-height: 160%;
+  margin-left: 25px;
+  line-height: 160%;
 }
 
 .popup {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    z-index: 2;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 2;
 }
 
 .popup__inner {
-    height: 400px;
-    width: 900px;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 3;
-    position: absolute;
-    top: 15vh;
-    left: 20%;
-    margin: auto;
-    border-radius: 25px;
-    border: 3px solid black;
+  height: 400px;
+  width: 900px;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 3;
+  position: absolute;
+  top: 15vh;
+  left: 20%;
+  margin: auto;
+  border-radius: 25px;
+  border: 3px solid black;
 }
 
 .popup__list {
-    width: 700px;
-    margin-left: 40px;
-    margin-top: 50px;
+  width: 700px;
+  margin-left: 40px;
+  margin-top: 50px;
 }
 
-.popup__list h2{
-    color: #fff;
-    font-size: 48px;
-    text-wrap: nowrap;
+.popup__list h2 {
+  color: #fff;
+  font-size: 48px;
+  text-wrap: nowrap;
 }
 
-.popup__list li{
-    margin-top: 30px;
-    width: 400px;
-    cursor: pointer;
+.popup__list li {
+  margin-top: 30px;
+  width: 400px;
+  cursor: pointer;
 }
 
 .timer__wrapper {
-margin-left: 5Ыpx;
-margin-top: 12px;
-display: flex;
+  margin-left: 5Ыpx;
+  margin-top: 12px;
+  display: flex;
 }
 
 .timer {
@@ -169,72 +175,83 @@ display: flex;
 }
 
 .timer__off {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border: 3px solid black;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 3px solid black;
 }
 .timer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    z-index: 3;
-    background-color: #fff;
-    animation: mask__left 60s steps(1, end) forwards;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 3;
+  background-color: #fff;
+  animation: mask__left 60s steps(1, end) forwards;
 }
 
 .timer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    z-index: 3;
-    background-color: #000;
-    animation: mask__right 60s steps(1, end) forwards;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 3;
+  background-color: #000;
+  animation: mask__right 60s steps(1, end) forwards;
 }
 
 .timer__line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    animation: line 60s linear forwards;
-    z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: line 60s linear forwards;
+  z-index: 2;
 }
 
 .timer__line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-color: #000;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #000;
 }
 
-@keyframes line{
-    0% {}
-    100% {
-        transform: rotate(360deg);
-    }
+@keyframes line {
+  0% {
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes mask__left {
-    0% {visibility: visible;}
-    50%,100% {visibility: hidden;}
+  0% {
+    visibility: visible;
+  }
+  50%,
+  100% {
+    visibility: hidden;
+  }
 }
 @keyframes mask__right {
-    0% {visibility: hidden;}
-    50%,100% {visibility: visible;}
+  0% {
+    visibility: hidden;
+  }
+  50%,
+  100% {
+    visibility: visible;
+  }
 }
