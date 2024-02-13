@@ -13,23 +13,24 @@ const Menu = () => {
     lastKey,
     displayText,
     setDisplayText,
-    toggleTimerState,
-    setToggleTimerState,
-    seconds,
-    setSeconds,
   } = useContext(TabContext);
   const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
   const [isMounted, setIsMounted] = useState(false);
   const [toggleSPM, setToggleSPM] = useState(0);
   const staticDisplayLength = useRef(0);
   const [pause, setPause] = useState(true);
+  const [seconds, setSeconds] = useState(10);
+  const [toggleTimerState, setToggleTimerState] = useState(false);
+  const [timerEnd, setTimerEnd] = useState(false);
+  const lastSPM = useRef(0);
+
   const switchTypeText =
     toggleButton === 0 ? (
       <div className={classes.lastKey}>
         <h2>{lastKey}</h2>
       </div>
     ) : toggleButton === 1 ? (
-      <pre>{pause ? "выберите режим" : displayText}</pre>
+      <pre>{pause ? 'asd' : displayText}</pre>
     ) : toggleButton === 2 ? (
       <pre>{displayText}</pre>
     ) : toggleButton === 3 ? (
@@ -37,59 +38,68 @@ const Menu = () => {
     ) : null;
 
   const handleClickClipboard = async () => {
+    setTimerEnd(!timerEnd);
     try {
       const text = await navigator.clipboard.readText();
       setDisplayText(text);
     } catch (error) {
       console.error("Ошибка при чтении буфера обмена", error);
     }
-    setPause(false);
     setIsMounted(true);
+    setPause(false);
   };
-
+  
   useEffect(() => {
     if (isMounted) {
       staticDisplayLength.current = displayText.length;
-      setIsMounted(false);
-      console.log("юзЭфект с маунтед");
+      console.log(staticDisplayLength.current);
+      setSeconds(10);
     }
   }, [isMounted]);
-
+  
   useEffect(() => {
     if (staticDisplayLength.current > displayText.length) {
       setToggleTimerState(true);
-      console.log("юзЭфект с поставлением таймерстейта");
     }
+    setToggleSPM(staticDisplayLength.current - displayText.length);
   }, [displayText]);
 
+  let secondsInterval = useRef(null);
   useEffect(() => {
-    let interval;
-
-    if (toggleTimerState) {
-      interval = setInterval(() => {
-        setSeconds((prevSeconds) => {
-          const updatedSeconds = prevSeconds - 1;
-          if (updatedSeconds === 1) {
-            setIsMounted(false);
-            setDisplayText("");
-            setToggleTimerState(false);
-            clearInterval(interval);
-          }
-          console.log(updatedSeconds);
-          return updatedSeconds;
-        });
-      }, 1000);
-      console.log("старт интервала");
-    }
+    if (toggleTimerState === true) {
+      secondsInterval.current = setInterval(() => {
+        setSeconds(prevSeconds => {
+        if (prevSeconds !== 0) {
+          console.log(prevSeconds);
+          return prevSeconds - 1;
+        } else {
+          let timelyValue = toggleSPM;
+          lastSPM.current = timelyValue;
+          setTimerEnd(!timerEnd);
+          return prevSeconds;
+        }
+      });
+    }, 1000);
+    };
   }, [toggleTimerState]);
 
+  useEffect(() => {
+    setDisplayText('');
+    setIsMounted(false);
+    setToggleTimerState(false);
+    staticDisplayLength.current = 0;
+    clearInterval(secondsInterval.current);
+  }, [timerEnd])
+
+
   const handleRandomClick = () => {
-    setPause(false);
+    setToggleTimerState(false);
     let generatedText = "";
     while (generatedText.length < 1000) {
       generatedText += fakerRU.lorem.sentence();
     }
     setDisplayText(generatedText);
+    setPause(false);
     setIsMounted(true);
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
   };
@@ -122,7 +132,7 @@ const Menu = () => {
             >
               sp/m
               <br />
-              &nbsp;&nbsp;&nbsp;{toggleSPM}
+              &nbsp;&nbsp;&nbsp;{lastSPM.current === 0 ? toggleSPM : lastSPM.current}
             </h2>
             <div style={{ display: toggleButton === 1 ? "block" : "none" }}>
               {toggleTimerState ? (

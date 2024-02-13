@@ -21,12 +21,6 @@ interface TabsContext {
 
   displayText: string[];
   setDisplayText: Dispatch<SetStateAction<string[]>>;
-
-  toggleTimerState: boolean;
-  setToggleTimerState: Dispatch<SetStateAction<boolean>>;
-
-  seconds: number;
-  setSeconds: Dispatch<SetStateAction<number>>;
 }
 
 const TabContext = createContext<any>(0);
@@ -37,8 +31,6 @@ const TabContextProvider = ({ children }: { children: ReactNode }) => {
   const [mainColor, setMainColor] = useState<string>("rgba(53, 29, 163, 0.7)");
   const [clipBoard, setClipBoard] = useState<string>("");
   const [displayText, setDisplayText] = useState<string[]>([]);
-  const [toggleTimerState, setToggleTimerState] = useState(false);
-  const [seconds, setSeconds] = useState(10);
 
   const contextValue: TabsContext = {
     mainColor,
@@ -51,10 +43,6 @@ const TabContextProvider = ({ children }: { children: ReactNode }) => {
     setClipBoard,
     displayText,
     setDisplayText,
-    toggleTimerState,
-    setToggleTimerState,
-    seconds,
-    setSeconds,
   };
 
   return (
