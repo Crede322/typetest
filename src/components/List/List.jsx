@@ -66,16 +66,6 @@ const List = () => {
               Без ограничений
             </button>
           </li>
-          <li>
-            <button
-              onClick={btnFour}
-              className={`${classes.list__button} ${
-                toggleButton === 3 ? classes.button__four : null
-              }`}
-            >
-              Рандом
-            </button>
-          </li>
         </ul>
       </div>
     </div>

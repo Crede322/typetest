@@ -30,7 +30,7 @@ const Menu = () => {
         <h2>{lastKey}</h2>
       </div>
     ) : toggleButton === 1 ? (
-      <pre>{pause ? 'asd' : displayText}</pre>
+      <pre>{pause ? 'выберите режим' : displayText}</pre>
     ) : toggleButton === 2 ? (
       <pre>{displayText}</pre>
     ) : toggleButton === 3 ? (
@@ -70,11 +70,9 @@ const Menu = () => {
       secondsInterval.current = setInterval(() => {
         setSeconds(prevSeconds => {
         if (prevSeconds !== 0) {
-          console.log(prevSeconds);
+          console.log(`осталось секунд ${prevSeconds}`);
           return prevSeconds - 1;
         } else {
-          let timelyValue = toggleSPM;
-          lastSPM.current = timelyValue;
           setTimerEnd(!timerEnd);
           return prevSeconds;
         }
@@ -82,6 +80,11 @@ const Menu = () => {
     }, 1000);
     };
   }, [toggleTimerState]);
+
+  useEffect(() => {
+    console.log(`введено символов ${toggleSPM}`);
+    lastSPM.current = toggleSPM;
+  }, [seconds]);
 
   useEffect(() => {
     setDisplayText('');
