@@ -23,6 +23,7 @@ const Menu = () => {
   const [toggleTimerState, setToggleTimerState] = useState(false);
   const [timerEnd, setTimerEnd] = useState(false);
   const lastSPM = useRef(0);
+  const [generatedText, setGeneratedText] = useState('');
 
   const switchTypeText =
     toggleButton === 0 ? (
@@ -41,18 +42,19 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     try {
       const text = await navigator.clipboard.readText();
-      setDisplayText(text);
+      setGeneratedText(text);
     } catch (error) {
       console.error("Ошибка при чтении буфера обмена", error);
     }
     setIsMounted(true);
     setPause(false);
+    console.log('строка с текстом');
   };
   
   useEffect(() => {
     if (isMounted) {
-      staticDisplayLength.current = displayText.length;
-      console.log(staticDisplayLength.current);
+      setDisplayText(generatedText);
+      staticDisplayLength.current = generatedText.length;
       setSeconds(10);
     }
   }, [isMounted]);
@@ -73,6 +75,7 @@ const Menu = () => {
           console.log(`осталось секунд ${prevSeconds}`);
           return prevSeconds - 1;
         } else {
+          // setDisplayText('');
           setTimerEnd(!timerEnd);
           return prevSeconds;
         }
@@ -87,25 +90,27 @@ const Menu = () => {
   }, [seconds]);
 
   useEffect(() => {
-    setDisplayText('');
     setIsMounted(false);
     setToggleTimerState(false);
-    staticDisplayLength.current = 0;
+    staticDisplayLength.current = generatedText.length;
     clearInterval(secondsInterval.current);
-  }, [timerEnd])
+  }, [timerEnd]);
+
 
 
   const handleRandomClick = () => {
-    setToggleTimerState(false);
-    let generatedText = "";
-    while (generatedText.length < 1000) {
-      generatedText += fakerRU.lorem.sentence();
+    let text = '';
+    while (text.length < 10) {
+      text += fakerRU.lorem.sentence();
     }
-    setDisplayText(generatedText);
-    setPause(false);
+    setGeneratedText(text);
     setIsMounted(true);
-    setIsLibraryPopupOpen(!isLibraryPopupOpen);
+    setTimerEnd(!timerEnd);
+    // setDisplayText(text);
+    setPause(false);
+    setIsLibraryPopupOpen(false);
   };
+  
 
   const handleLibraryClick = () => {
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
