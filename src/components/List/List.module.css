@@ -12,7 +12,7 @@
 
 .list__button {
     padding: 5px 15px 5px 15px;
-    width: fit-content;
+    width: 240px;
 
     justify-content: space-between;
     margin: auto;
@@ -38,10 +38,10 @@
     display: block;
     position: absolute;
     bottom: -31px;
-    left: -23%;
+    left: -10%;
     background-color: var(--Accent);
     height: 4px;
-    width: 120px;
+    width: 120%;
     pointer-events: none;
 }
 
@@ -56,10 +56,10 @@
     display: block;
     position: absolute;
     bottom: -31px;
-    left: -23%;
+    left: -10%;
     background-color: var(--Blue);
     height: 4px;
-    width: 200px;
+    width: 120%;
     pointer-events: none;
 }
 
@@ -74,10 +74,10 @@
     display: block;
     position: absolute;
     bottom: -31px;
-    left: -18px;
+    left: -10%;
     background-color: var(--Red);
     height: 4px;
-    width: 270px;
+    width: 120%;
     pointer-events: none;
 }
 

@@ -13,13 +13,14 @@ const Menu = () => {
     lastKey,
     displayText,
     setDisplayText,
+    afterBtn,
   } = useContext(TabContext);
   const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
   const [isMounted, setIsMounted] = useState(false);
   const [toggleSPM, setToggleSPM] = useState(0);
   const staticDisplayLength = useRef(0);
   const [pause, setPause] = useState(true);
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(120);
   const [toggleTimerState, setToggleTimerState] = useState(false);
   const [timerEnd, setTimerEnd] = useState(false);
   const lastSPM = useRef(0);
@@ -33,37 +34,38 @@ const Menu = () => {
     ) : toggleButton === 1 ? (
       <pre>{pause ? 'выберите режим' : displayText}</pre>
     ) : toggleButton === 2 ? (
-      <pre>{displayText}</pre>
-    ) : toggleButton === 3 ? (
-      <pre>{displayText}</pre>
+      <pre>{pause ? 'выберите режим' : displayText}</pre>
     ) : null;
 
   const handleClickClipboard = async () => {
     setTimerEnd(!timerEnd);
     try {
       const text = await navigator.clipboard.readText();
-      setGeneratedText(text);
+      setGeneratedText(toggleTimerState ? '' : text);
+      // setGeneratedText(text);
     } catch (error) {
       console.error("Ошибка при чтении буфера обмена", error);
     }
     setIsMounted(true);
     setPause(false);
-    console.log('строка с текстом');
   };
   
   useEffect(() => {
     if (isMounted) {
       setDisplayText(generatedText);
       staticDisplayLength.current = generatedText.length;
-      setSeconds(10);
+      setSeconds(120);
     }
   }, [isMounted]);
   
   useEffect(() => {
-    if (staticDisplayLength.current > displayText.length) {
+    if (staticDisplayLength.current > displayText.length && toggleButton === 1) {
       setToggleTimerState(true);
     }
     setToggleSPM(staticDisplayLength.current - displayText.length);
+    if (toggleButton === 2 && displayText.length === 0) {
+      setDisplayText(generatedText);
+    }
   }, [displayText]);
 
   let secondsInterval = useRef(null);
@@ -72,20 +74,18 @@ const Menu = () => {
       secondsInterval.current = setInterval(() => {
         setSeconds(prevSeconds => {
         if (prevSeconds !== 0) {
-          console.log(`осталось секунд ${prevSeconds}`);
+          console.log(prevSeconds);
           return prevSeconds - 1;
         } else {
-          // setDisplayText('');
           setTimerEnd(!timerEnd);
           return prevSeconds;
         }
       });
-    }, 1000);
+    }, 500);
     };
   }, [toggleTimerState]);
 
   useEffect(() => {
-    console.log(`введено символов ${toggleSPM}`);
     lastSPM.current = toggleSPM;
   }, [seconds]);
 
@@ -96,22 +96,26 @@ const Menu = () => {
     clearInterval(secondsInterval.current);
   }, [timerEnd]);
 
-
+  useEffect(() => {
+    setGeneratedText('');
+    setPause(true);
+    setIsMounted(!isMounted);
+    clearInterval(secondsInterval.current);
+    setToggleTimerState(false);
+  }, [afterBtn]);
 
   const handleRandomClick = () => {
     let text = '';
-    while (text.length < 10) {
+    while (text.length < 1000) {
       text += fakerRU.lorem.sentence();
     }
     setGeneratedText(text);
     setIsMounted(true);
     setTimerEnd(!timerEnd);
-    // setDisplayText(text);
     setPause(false);
     setIsLibraryPopupOpen(false);
   };
   
-
   const handleLibraryClick = () => {
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
   };
