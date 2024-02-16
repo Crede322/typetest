@@ -15,16 +15,17 @@ const Menu = () => {
     setDisplayText,
     afterBtn,
   } = useContext(TabContext);
-  const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
+  const [generatedText, setGeneratedText] = useState('');
   const [isMounted, setIsMounted] = useState(false);
+  const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
+  const [isLibraryMounted, setIsLibraryMounted] = useState(false);
   const [toggleSPM, setToggleSPM] = useState(0);
-  const staticDisplayLength = useRef(0);
   const [pause, setPause] = useState(true);
   const [seconds, setSeconds] = useState(120);
   const [toggleTimerState, setToggleTimerState] = useState(false);
   const [timerEnd, setTimerEnd] = useState(false);
+  const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
-  const [generatedText, setGeneratedText] = useState('');
 
   const switchTypeText =
     toggleButton === 0 ? (
@@ -42,12 +43,12 @@ const Menu = () => {
     try {
       const text = await navigator.clipboard.readText();
       setGeneratedText(toggleTimerState ? '' : text);
-      // setGeneratedText(text);
     } catch (error) {
-      console.error("Ошибка при чтении буфера обмена", error);
-    }
+    console.error("Ошибка при чтении буфера обмена", error)
+    };
     setIsMounted(true);
     setPause(false);
+    console.log('клипборд');
   };
   
   useEffect(() => {
@@ -55,6 +56,7 @@ const Menu = () => {
       setDisplayText(generatedText);
       staticDisplayLength.current = generatedText.length;
       setSeconds(120);
+      console.log('маунтед');
     }
   }, [isMounted]);
   
@@ -66,6 +68,7 @@ const Menu = () => {
     if (toggleButton === 2 && displayText.length === 0) {
       setDisplayText(generatedText);
     }
+    console.log('дисплей текст эффект');
   }, [displayText]);
 
   let secondsInterval = useRef(null);
@@ -83,10 +86,12 @@ const Menu = () => {
       });
     }, 500);
     };
+    console.log('тоггл таймерстейт');
   }, [toggleTimerState]);
 
   useEffect(() => {
     lastSPM.current = toggleSPM;
+    console.log('секондс');
   }, [seconds]);
 
   useEffect(() => {
@@ -94,6 +99,7 @@ const Menu = () => {
     setToggleTimerState(false);
     staticDisplayLength.current = generatedText.length;
     clearInterval(secondsInterval.current);
+    console.log('таймерэнд');
   }, [timerEnd]);
 
   useEffect(() => {
@@ -102,6 +108,7 @@ const Menu = () => {
     setIsMounted(!isMounted);
     clearInterval(secondsInterval.current);
     setToggleTimerState(false);
+    console.log('афтер баттн');
   }, [afterBtn]);
 
   const handleRandomClick = () => {
@@ -110,12 +117,22 @@ const Menu = () => {
       text += fakerRU.lorem.sentence();
     }
     setGeneratedText(text);
-    setIsMounted(true);
+    setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
+    console.log('рандомклик');
   };
   
+    useEffect(() => {
+      setIsLibraryMounted(false);
+      console.log('дисплей из либрари');
+      setDisplayText(generatedText);
+      // staticDisplayLength.current = generatedText.length;
+      // setSeconds(120);
+      // console.log('маунтед');
+  }, [isLibraryMounted]);
+
   const handleLibraryClick = () => {
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
   };
@@ -146,7 +163,7 @@ const Menu = () => {
               <br />
               &nbsp;&nbsp;&nbsp;{lastSPM.current === 0 ? toggleSPM : lastSPM.current}
             </h2>
-            <div style={{ display: toggleButton === 1 ? "block" : "none" }}>
+            <div style={{ display: toggleButton === 1 ? "block" : "none", willChange: 'transform'}}>
               {toggleTimerState ? (
                 <div className={classes.timer}>
                   <div className={classes.timer__line} />
