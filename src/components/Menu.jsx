@@ -86,20 +86,18 @@ const Menu = () => {
       });
     }, 500);
     };
-    console.log('тоггл таймерстейт');
   }, [toggleTimerState]);
 
   useEffect(() => {
     lastSPM.current = toggleSPM;
-    console.log('секондс');
   }, [seconds]);
 
   useEffect(() => {
+    setDisplayText('');
     setIsMounted(false);
     setToggleTimerState(false);
     staticDisplayLength.current = generatedText.length;
     clearInterval(secondsInterval.current);
-    console.log('таймерэнд');
   }, [timerEnd]);
 
   useEffect(() => {
@@ -108,7 +106,6 @@ const Menu = () => {
     setIsMounted(!isMounted);
     clearInterval(secondsInterval.current);
     setToggleTimerState(false);
-    console.log('афтер баттн');
   }, [afterBtn]);
 
   const handleRandomClick = () => {
@@ -121,16 +118,11 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
-    console.log('рандомклик');
   };
   
     useEffect(() => {
       setIsLibraryMounted(false);
-      console.log('дисплей из либрари');
       setDisplayText(generatedText);
-      // staticDisplayLength.current = generatedText.length;
-      // setSeconds(120);
-      // console.log('маунтед');
   }, [isLibraryMounted]);
 
   const handleLibraryClick = () => {

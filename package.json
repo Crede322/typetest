@@ -1,19 +1,21 @@
 {
   "name": "typetest",
   "version": "0.1.0",
+  "homepage": "https://github.io/Riiru/typetest",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.5.1",
-
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -40,9 +42,10 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
     "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.33.2",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.2.5"
   }
 }
