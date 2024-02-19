@@ -71,22 +71,7 @@ const Menu = () => {
     }
   }, [displayText]);
 
-  let secondsInterval = useRef(null);
-  useEffect(() => {
-    if (toggleTimerState === true && toggleButton === 1) {
-      secondsInterval.current = setInterval(() => {
-        setSeconds(prevSeconds => {
-        if (prevSeconds !== 0) {
-          console.log(prevSeconds);
-          return prevSeconds - 1;
-        } else {
-          setTimerEnd(!timerEnd);
-          return prevSeconds;
-        }
-      });
-    }, 500);
-  };
-  }, [toggleTimerState]);
+
 
   useEffect(() => {
     lastSPM.current = toggleSPM;
