@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Riiru/typetest/static/css/main.68282efe.css",
-    "main.js": "/Riiru/typetest/static/js/main.12a74352.js",
+    "main.css": "/Riiru/typetest/static/css/main.a2d5a8a2.css",
+    "main.js": "/Riiru/typetest/static/js/main.70907e34.js",
     "static/media/logo.svg": "/Riiru/typetest/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "static/media/paste.svg": "/Riiru/typetest/static/media/paste.2e3564aa02d9cd00cad5d445808dc50a.svg",
-    "static/media/lib.svg": "/Riiru/typetest/static/media/lib.18c90498c0e68ddfa3c476c336d068d7.svg",
+    "static/media/paste.svg": "/Riiru/typetest/static/media/paste.996a395536b092e01f40719ccd91c734.svg",
+    "static/media/lib.svg": "/Riiru/typetest/static/media/lib.97a84e2450ab0a6f00e3926ee8911ecb.svg",
     "static/media/EnterBlue.svg": "/Riiru/typetest/static/media/EnterBlue.bfb8f414716cca6d31a5ddcfa553139b.svg",
     "static/media/EnterGreen.svg": "/Riiru/typetest/static/media/EnterGreen.f89ee077a66384e99a6759f76debd86a.svg",
     "static/media/EnterRed.svg": "/Riiru/typetest/static/media/EnterRed.3ce8d57dd84df0200afc8f31ecc7ee4f.svg",
     "static/media/EnterViolet.svg": "/Riiru/typetest/static/media/EnterViolet.a6f49ee47388506976909f747bc621ba.svg",
     "static/media/Enter.svg": "/Riiru/typetest/static/media/Enter.6584593a23b8546b3ec13489b4a94f43.svg",
     "index.html": "/Riiru/typetest/index.html",
-    "main.68282efe.css.map": "/Riiru/typetest/static/css/main.68282efe.css.map",
-    "main.12a74352.js.map": "/Riiru/typetest/static/js/main.12a74352.js.map"
+    "main.a2d5a8a2.css.map": "/Riiru/typetest/static/css/main.a2d5a8a2.css.map",
+    "main.70907e34.js.map": "/Riiru/typetest/static/js/main.70907e34.js.map"
   },
   "entrypoints": [
-    "static/css/main.68282efe.css",
-    "static/js/main.12a74352.js"
+    "static/css/main.a2d5a8a2.css",
+    "static/js/main.70907e34.js"
   ]
 }

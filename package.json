@@ -1,7 +1,7 @@
 {
   "name": "typetest",
   "version": "0.1.0",
-  "homepage": "https://github.io/Riiru/typetest",
+  "homepage": "https://Riiru.github.io/typetest",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
