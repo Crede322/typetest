@@ -39,7 +39,6 @@ const Menu = () => {
     ) : null;
 
   const handleClickClipboard = async () => {
-    setTimerEnd(!timerEnd);
     try {
       const text = await navigator.clipboard.readText();
       setGeneratedText(toggleTimerState ? '' : text);
@@ -47,8 +46,11 @@ const Menu = () => {
     console.error("Ошибка при чтении буфера обмена", error)
     };
     setIsMounted(true);
+    setIsLibraryMounted(true);
+    setTimerEnd(!timerEnd);
     setPause(false);
-    console.log('клипборд');
+    setIsLibraryPopupOpen(false);
+    setToggleTimerState(false);
   };
   
   useEffect(() => {
@@ -56,7 +58,6 @@ const Menu = () => {
       setDisplayText(generatedText);
       staticDisplayLength.current = generatedText.length;
       setSeconds(120);
-      console.log('маунтед');
     }
   }, [isMounted]);
   
@@ -68,12 +69,11 @@ const Menu = () => {
     if (toggleButton === 2 && displayText.length === 0) {
       setDisplayText(generatedText);
     }
-    console.log('дисплей текст эффект');
   }, [displayText]);
 
   let secondsInterval = useRef(null);
   useEffect(() => {
-    if (toggleTimerState === true) {
+    if (toggleTimerState === true && toggleButton === 1) {
       secondsInterval.current = setInterval(() => {
         setSeconds(prevSeconds => {
         if (prevSeconds !== 0) {
@@ -108,7 +108,7 @@ const Menu = () => {
     setToggleTimerState(false);
   }, [afterBtn]);
 
-  const handleRandomClick = () => {
+  const handlePopupOne = () => {
     let text = '';
     while (text.length < 1000) {
       text += fakerRU.lorem.sentence();
@@ -129,12 +129,27 @@ const Menu = () => {
     setIsLibraryPopupOpen(!isLibraryPopupOpen);
   };
 
-  const handlePopup = () => {
-    setIsLibraryPopupOpen(!isLibraryPopupOpen);
-    setDisplayText(
-      "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start"
+  const handlePopupTwo = () => {
+    let text = '';
+    while (text.length < 1000) {
+      text += fakerEN.lorem.sentence();
+    }
+    setGeneratedText(text);
+    setIsLibraryMounted(true);
+    setTimerEnd(!timerEnd);
+    setPause(false);
+    setIsLibraryPopupOpen(false);
+  }
+
+  const handlePopupThree = () => {
+    setGeneratedText(
+    "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start"
     );
-  };
+    setIsLibraryMounted(true);
+    setTimerEnd(!timerEnd);
+    setPause(false);
+    setIsLibraryPopupOpen(false);
+    };
 
   const closePopup = () => {
     setIsLibraryPopupOpen(false);
@@ -172,17 +187,14 @@ const Menu = () => {
           style={{ display: isLibraryPopupOpen === true ? "block" : "none" }}
         >
           <ul className={classes.popup__list}>
-            <li onClick={handleRandomClick}>
+            <li onClick={handlePopupOne}>
+              <h2>Случайный текст на русском</h2>
+            </li>
+            <li onClick={handlePopupTwo}>
               <h2>Случайный текст на английском</h2>
             </li>
-            <li onClick={handlePopup}>
-              <h2>text</h2>
-            </li>
-            <li onClick={handlePopup}>
+            <li onClick={handlePopupThree}>
               <h2>React & Frontend</h2>
-            </li>
-            <li onClick={handlePopup}>
-              <h2>text</h2>
             </li>
           </ul>
         </div>

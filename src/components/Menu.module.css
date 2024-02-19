@@ -125,7 +125,7 @@
 }
 
 .popup__inner {
-  height: 400px;
+  height: 350px;
   width: 900px;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 3;
