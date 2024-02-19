@@ -85,7 +85,7 @@ const Menu = () => {
         }
       });
     }, 500);
-    };
+  };
   }, [toggleTimerState]);
 
   useEffect(() => {
