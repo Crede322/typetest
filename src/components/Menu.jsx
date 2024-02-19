@@ -84,7 +84,7 @@ const Menu = () => {
           return prevSeconds;
         }
       });
-    }, 500);
+      }, 500);
     };
   }, [toggleTimerState]);
 
