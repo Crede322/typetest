@@ -57,6 +57,14 @@ const List = () => {
             </button>
           </li>
           <li>
+            <button
+              onClick={btnThree}
+              className={`${classes.list__button} ${
+                toggleButton === 2 ? classes.button__three : null
+              }`}
+            >
+              Без ограничений
+            </button>
           </li>
         </ul>
       </div>
