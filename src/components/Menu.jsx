@@ -55,7 +55,6 @@ const Menu = () => {
       setSeconds(120);
     }
   }, [isMounted]);
-
   useEffect(() => {
     if (
       staticDisplayLength.current > displayText.length &&
