@@ -47,5 +47,8 @@
     "eslint-plugin-react": "^7.33.2",
     "gh-pages": "^6.1.1",
     "prettier": "^3.2.5"
+  },
+  "prettier": {
+    "singleline-objects": true
   }
 }

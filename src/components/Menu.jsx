@@ -8,14 +8,9 @@ import { TabContext } from "../context/TabContext.tsx";
 import { fakerRU, fakerEN } from "@faker-js/faker";
 
 const Menu = () => {
-  const {
-    toggleButton,
-    lastKey,
-    displayText,
-    setDisplayText,
-    afterBtn,
-  } = useContext(TabContext);
-  const [generatedText, setGeneratedText] = useState('');
+  const { toggleButton, lastKey, displayText, setDisplayText, afterBtn } =
+    useContext(TabContext);
+  const [generatedText, setGeneratedText] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
   const [isLibraryMounted, setIsLibraryMounted] = useState(false);
@@ -33,18 +28,18 @@ const Menu = () => {
         <h2>{lastKey}</h2>
       </div>
     ) : toggleButton === 1 ? (
-      <pre>{pause ? 'выберите режим' : displayText}</pre>
+      <pre>{pause ? "выберите режим" : displayText}</pre>
     ) : toggleButton === 2 ? (
-      <pre>{pause ? 'выберите режим' : displayText}</pre>
+      <pre>{pause ? "выберите режим" : displayText}</pre>
     ) : null;
 
   const handleClickClipboard = async () => {
     try {
       const text = await navigator.clipboard.readText();
-      setGeneratedText(toggleTimerState ? '' : text);
+      setGeneratedText(toggleTimerState ? "" : text);
     } catch (error) {
-    console.error("Ошибка при чтении буфера обмена", error)
-    };
+      console.error("Ошибка при чтении буфера обмена", error);
+    }
     setIsMounted(true);
     setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
@@ -52,7 +47,7 @@ const Menu = () => {
     setIsLibraryPopupOpen(false);
     setToggleTimerState(false);
   };
-  
+
   useEffect(() => {
     if (isMounted) {
       setDisplayText(generatedText);
@@ -60,9 +55,12 @@ const Menu = () => {
       setSeconds(120);
     }
   }, [isMounted]);
-  
+
   useEffect(() => {
-    if (staticDisplayLength.current > displayText.length && toggleButton === 1) {
+    if (
+      staticDisplayLength.current > displayText.length &&
+      toggleButton === 1
+    ) {
       setToggleTimerState(true);
     }
     setToggleSPM(staticDisplayLength.current - displayText.length);
@@ -75,17 +73,17 @@ const Menu = () => {
   useEffect(() => {
     if (toggleTimerState === true && toggleButton === 1) {
       secondsInterval.current = setInterval(() => {
-        setSeconds(prevSeconds => {
-        if (prevSeconds !== 0) {
-          console.log(prevSeconds);
-          return prevSeconds - 1;
-        } else {
-          setTimerEnd(!timerEnd);
-          return prevSeconds;
-        }
-    });
-    }, 500);
-  };
+        setSeconds((prevSeconds) => {
+          if (prevSeconds !== 0) {
+            console.log(prevSeconds);
+            return prevSeconds - 1;
+          } else {
+            setTimerEnd(!timerEnd);
+            return prevSeconds;
+          }
+        });
+      }, 500);
+    }
   }, [toggleTimerState]);
 
   useEffect(() => {
@@ -93,7 +91,7 @@ const Menu = () => {
   }, [seconds]);
 
   useEffect(() => {
-    setDisplayText('');
+    setDisplayText("");
     setIsMounted(false);
     setToggleTimerState(false);
     staticDisplayLength.current = generatedText.length;
@@ -101,7 +99,7 @@ const Menu = () => {
   }, [timerEnd]);
 
   useEffect(() => {
-    setGeneratedText('');
+    setGeneratedText("");
     setPause(true);
     setIsMounted(!isMounted);
     clearInterval(secondsInterval.current);
@@ -109,7 +107,7 @@ const Menu = () => {
   }, [afterBtn]);
 
   const handlePopupOne = () => {
-    let text = '';
+    let text = "";
     while (text.length < 1000) {
       text += fakerRU.lorem.sentence();
     }
@@ -119,10 +117,10 @@ const Menu = () => {
     setPause(false);
     setIsLibraryPopupOpen(false);
   };
-  
-    useEffect(() => {
-      setIsLibraryMounted(false);
-      setDisplayText(generatedText);
+
+  useEffect(() => {
+    setIsLibraryMounted(false);
+    setDisplayText(generatedText);
   }, [isLibraryMounted]);
 
   const handleLibraryClick = () => {
@@ -130,7 +128,7 @@ const Menu = () => {
   };
 
   const handlePopupTwo = () => {
-    let text = '';
+    let text = "";
     while (text.length < 1000) {
       text += fakerEN.lorem.sentence();
     }
@@ -139,17 +137,17 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
-  }
+  };
 
   const handlePopupThree = () => {
     setGeneratedText(
-    "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start"
+      "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start",
     );
     setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
-    };
+  };
 
   const closePopup = () => {
     setIsLibraryPopupOpen(false);
@@ -168,9 +166,15 @@ const Menu = () => {
             >
               sp/m
               <br />
-              &nbsp;&nbsp;&nbsp;{lastSPM.current === 0 ? toggleSPM : lastSPM.current}
+              &nbsp;&nbsp;&nbsp;
+              {lastSPM.current === 0 ? toggleSPM : lastSPM.current}
             </h2>
-            <div style={{ display: toggleButton === 1 ? "block" : "none", willChange: 'transform'}}>
+            <div
+              style={{
+                display: toggleButton === 1 ? "block" : "none",
+                willChange: "transform",
+              }}
+            >
               {toggleTimerState ? (
                 <div className={classes.timer}>
                   <div className={classes.timer__line} />

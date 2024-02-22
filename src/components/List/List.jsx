@@ -4,32 +4,32 @@ import { useContext } from "react";
 import { TabContext } from "../../context/TabContext.tsx";
 
 const List = () => {
-  const { 
-    toggleButton, 
-    setToggleButton, 
-    setMainColor, 
+  const {
+    toggleButton,
+    setToggleButton,
+    setMainColor,
     setDisplayText,
     afterBtn,
-    resetAfterBtn, 
+    resetAfterBtn,
   } = useContext(TabContext);
 
   const btnOne = () => {
     setToggleButton(0);
     console.log("1");
     setMainColor("rgba(53, 29, 163, 0.7)");
-    resetAfterBtn(!afterBtn)
+    resetAfterBtn(!afterBtn);
   };
   const btnTwo = () => {
     setToggleButton(1);
     console.log("2");
     setMainColor("rgba(0, 39, 211, 0.7)");
-    resetAfterBtn(!afterBtn)
+    resetAfterBtn(!afterBtn);
   };
   const btnThree = () => {
     setToggleButton(2);
     console.log("3");
     setMainColor("rgba(255, 0, 0, 0.9)");
-    resetAfterBtn(!afterBtn)
+    resetAfterBtn(!afterBtn);
   };
 
   return (
@@ -59,6 +59,7 @@ const List = () => {
           <li>
             <button
               onClick={btnThree}
+              c
               className={`${classes.list__button} ${
                 toggleButton === 2 ? classes.button__three : null
               }`}
