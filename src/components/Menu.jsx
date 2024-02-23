@@ -47,6 +47,7 @@ const Menu = () => {
     setIsLibraryPopupOpen(false);
     setToggleTimerState(false);
   };
+
   useEffect(() => {
     if (isMounted) {
       setDisplayText(generatedText);
