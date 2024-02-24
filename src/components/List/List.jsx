@@ -10,7 +10,7 @@ const List = () => {
     setMainColor,
     setDisplayText,
     afterBtn,
-    resqetAfterBtn,
+    resetAfterBtn,
   } = useContext(TabContext);
 
   const btnOne = () => {
