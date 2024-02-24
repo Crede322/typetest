@@ -59,7 +59,6 @@ const List = () => {
           <li>
             <button
               onClick={btnThree}
-              c
               className={`${classes.list__button} ${
                 toggleButton === 2 ? classes.button__three : null
               }`}

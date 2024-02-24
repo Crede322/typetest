@@ -6,6 +6,7 @@ import pasteImg from "../img/paste.svg";
 import libImg from "../img/lib.svg";
 import { TabContext } from "../context/TabContext.tsx";
 import { fakerRU, fakerEN } from "@faker-js/faker";
+import arrow from "../img/arrow.svg";
 
 const Menu = () => {
   const { toggleButton, lastKey, displayText, setDisplayText, afterBtn } =
@@ -27,10 +28,21 @@ const Menu = () => {
       <div className={classes.lastKey}>
         <h2>{lastKey}</h2>
       </div>
-    ) : toggleButton === 1 ? (
-      <pre>{pause ? "выберите режим" : displayText}</pre>
-    ) : toggleButton === 2 ? (
-      <pre>{pause ? "выберите режим" : displayText}</pre>
+    ) : toggleButton === 1 || 2 ? (
+      pause ? (
+        <div style={{ display: "flex" }}>
+          <h2 style={{ marginTop: "15px", marginLeft: "30px" }}>
+            Выберите режим
+          </h2>
+          <img
+            style={{ width: "90px", height: "90px", marginLeft: "20px" }}
+            src={arrow}
+            alt="arrowSVG"
+          />
+        </div>
+      ) : (
+        <pre>{displayText}</pre>
+      )
     ) : null;
 
   const handleClickClipboard = async () => {
