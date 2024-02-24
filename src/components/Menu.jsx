@@ -197,7 +197,13 @@ const Menu = () => {
             </div>
           </div>
         </div>
-        <div className={classes.title}>{switchTypeText}</div>
+        <div className={classes.title}>
+          {switchTypeText}
+          <div
+            style={{ display: pause ? "none" : "block" }}
+            className={classes.typing__cursor}
+          />
+        </div>
         <div
           className={classes.popup__inner}
           style={{ display: isLibraryPopupOpen === true ? "block" : "none" }}
