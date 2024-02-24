@@ -29,7 +29,7 @@ interface TabsContext {
 const TabContext = createContext<any>(0);
 
 const TabContextProvider = ({ children }: { children: ReactNode }) => {
-  const [toggleButton, setToggleButton] = useState<number>(0);
+  const [toggleButton, setToggleButton] = useState<number>(1);
   const [lastKey, setLastKey] = useState<string>("");
   const [mainColor, setMainColor] = useState<string>("rgba(53, 29, 163, 0.7)");
   const [clipBoard, setClipBoard] = useState<string>("");
