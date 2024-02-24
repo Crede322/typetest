@@ -28,7 +28,8 @@ const Menu = () => {
         <h2>{lastKey}</h2>
       </div>
     ) : toggleButton === 1 ? (
-      <pre>{pause ? "выберите режим" : displayText}</pre>
+      // <pre>{pause ? "выберите режим" : displayText}</pre>
+      <pre>{displayText}</pre>
     ) : toggleButton === 2 ? (
       <pre>{pause ? "выберите режим" : displayText}</pre>
     ) : null;
@@ -99,7 +100,7 @@ const Menu = () => {
   }, [timerEnd]);
 
   useEffect(() => {
-    setGeneratedText("");
+    setGeneratedText("test");
     setPause(true);
     setIsMounted(!isMounted);
     clearInterval(secondsInterval.current);
