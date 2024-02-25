@@ -6,7 +6,6 @@ import pasteImg from "../img/paste.svg";
 import libImg from "../img/lib.svg";
 import { TabContext } from "../context/TabContext.tsx";
 import { fakerRU, fakerEN } from "@faker-js/faker";
-import arrow from "../img/arrow.svg";
 
 const Menu = () => {
   const { toggleButton, lastKey, displayText, setDisplayText, afterBtn } =
@@ -22,28 +21,6 @@ const Menu = () => {
   const [timerEnd, setTimerEnd] = useState(false);
   const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
-
-  const switchTypeText =
-    toggleButton === 0 ? (
-      <div className={classes.lastKey}>
-        <h2>{lastKey}</h2>
-      </div>
-    ) : toggleButton === 1 || 2 ? (
-      pause ? (
-        <div style={{ display: "flex" }}>
-          <h2 style={{ marginTop: "15px", marginLeft: "30px" }}>
-            Выберите режим
-          </h2>
-          <img
-            style={{ width: "90px", height: "90px", marginLeft: "20px" }}
-            src={arrow}
-            alt="arrowSVG"
-          />
-        </div>
-      ) : (
-        <pre>{displayText}</pre>
-      )
-    ) : null;
 
   const handleClickClipboard = async () => {
     try {
@@ -165,6 +142,26 @@ const Menu = () => {
     setIsLibraryPopupOpen(false);
   };
 
+  const switchTypeText =
+    toggleButton === 0 ? (
+      <div className={classes.lastKey}>
+        <h2>{lastKey}</h2>
+      </div>
+    ) : toggleButton === 1 || 2 ? (
+      pause ? (
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div onClick={handleClickClipboard} className={classes.paste}>
+            <img src={pasteImg} alt="paste text" />
+          </div>
+          <div onClick={handleLibraryClick} className={classes.library}>
+            <img src={libImg} alt="libraryImage" />
+          </div>
+        </div>
+      ) : (
+        <pre>{displayText}</pre>
+      )
+    ) : null;
+
   return (
     <div>
       <div className={classes.typing}>
@@ -221,26 +218,6 @@ const Menu = () => {
           </ul>
         </div>
         <div className={classes.typing__buttons2}>
-          <div
-            onClick={handleClickClipboard}
-            style={{
-              display: toggleButton === 0 ? "none" : "block",
-              transition: "all 0.6s",
-            }}
-            className={classes.paste}
-          >
-            <img src={pasteImg} alt="paste text" />
-          </div>
-          <div
-            onClick={handleLibraryClick}
-            style={{
-              display: toggleButton === 0 ? "none" : "block",
-              transition: "all 0.6s",
-            }}
-            className={classes.library}
-          >
-            <img src={libImg} alt="libraryImage" />
-          </div>
           <div
             className={classes.popup}
             onClick={closePopup}
