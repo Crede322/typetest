@@ -20,6 +20,7 @@ const Menu = () => {
   const [seconds, setSeconds] = useState(120);
   const [toggleTimerState, setToggleTimerState] = useState(false);
   const [timerEnd, setTimerEnd] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
   const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
 
@@ -36,6 +37,7 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setToggleTimerState(false);
+    setShowTimer(true);
   };
 
   //монтирование после нажатия (like a switcher)
@@ -123,6 +125,7 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
+    setShowTimer(true);
   };
 
   const handlePopupTwo = () => {
@@ -135,6 +138,7 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
+    setShowTimer(true);
   };
 
   const handlePopupThree = () => {
@@ -145,6 +149,7 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
+    setShowTimer(true);
   };
 
   const closePopup = () => {
@@ -158,6 +163,7 @@ const Menu = () => {
     clearInterval(secondsInterval.current);
     setPause(true);
     setToggleTimerState(false);
+    setToggleSPM(0);
   };
 
   // рендер
@@ -183,13 +189,28 @@ const Menu = () => {
 
   return (
     <div>
+      <div
+        style={{
+          transition: "all, 0.4s",
+          margin: "auto",
+          width: "220px",
+          fontSize: "24px",
+          textWrap: "nowrap",
+          marginBottom: "10px",
+          opacity: toggleButton === 0 || showTimer ? "0" : "1",
+          cursor: "default",
+          fontWeight: 500,
+        }}
+      >
+        <h2>Выберите режим :</h2>
+      </div>
       <div className={classes.typing}>
         <div style={{ display: "flex", margin: "auto" }}>
           <div className={classes.typing__buttons1}>
             <div className={classes.timer__wrapper}>
               <h2
                 style={{
-                  display: toggleButton === 1 ? "block" : "none",
+                  display: toggleButton === 1 && showTimer ? "block" : "none",
                   margin: "6px 10px 0 0",
                 }}
               >
@@ -200,7 +221,7 @@ const Menu = () => {
               </h2>
               <div
                 style={{
-                  display: toggleButton === 1 ? "block" : "none",
+                  display: toggleButton === 1 && showTimer ? "block" : "none",
                   willChange: "transform",
                 }}
               >
@@ -218,7 +239,7 @@ const Menu = () => {
             className={classes.title}
             style={{
               transition: "all, 0.9s",
-              width: pause ? "250px" : "800px",
+              width: pause ? "250px" : "600px",
             }}
           >
             {switchTypeText}

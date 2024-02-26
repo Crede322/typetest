@@ -8,7 +8,6 @@ const List = () => {
     toggleButton,
     setToggleButton,
     setMainColor,
-    setDisplayText,
     afterBtn,
     resetAfterBtn,
   } = useContext(TabContext);
