@@ -1,7 +1,6 @@
 .title {
   border-radius: 10px;
   height: 80px;
-  width: 800px;
   margin: auto;
   margin-bottom: 25px;
   font-size: 64px;
@@ -81,7 +80,6 @@
 }
 
 .paste {
-  margin-left: 300px;
   margin-top: 16px;
   width: 48px;
   height: 48px;
@@ -96,7 +94,6 @@
 }
 
 .library {
-  margin-right: 300px;
   margin-top: 16px;
   width: 48px;
   height: 48px;

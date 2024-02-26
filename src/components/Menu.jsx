@@ -194,10 +194,15 @@ const Menu = () => {
             </div>
           </div>
         </div>
-        <div className={classes.title}>
+        <div
+          className={classes.title}
+          style={{ transition: "all, 0.9s", width: pause ? "250px" : "800px" }}
+        >
           {switchTypeText}
           <div
-            style={{ display: pause ? "none" : "block" }}
+            style={{
+              display: pause ? "none" : "block",
+            }}
             className={classes.typing__cursor}
           />
         </div>
