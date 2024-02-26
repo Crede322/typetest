@@ -4,6 +4,7 @@ import List from "./List/List";
 import Tab from "./List/Tabs/Tab.jsx";
 import pasteImg from "../img/paste.svg";
 import libImg from "../img/lib.svg";
+import refreshImg from "../img/refresh.svg";
 import { TabContext } from "../context/TabContext.tsx";
 import { fakerRU, fakerEN } from "@faker-js/faker";
 
@@ -22,6 +23,7 @@ const Menu = () => {
   const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
 
+  // кнопка буфера обмена
   const handleClickClipboard = async () => {
     try {
       const text = await navigator.clipboard.readText();
@@ -33,10 +35,10 @@ const Menu = () => {
     setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
     setPause(false);
-    setIsLibraryPopupOpen(false);
     setToggleTimerState(false);
   };
 
+  //монтирование после нажатия (like a switcher)
   useEffect(() => {
     if (isMounted) {
       setDisplayText(generatedText);
@@ -45,6 +47,7 @@ const Menu = () => {
     }
   }, [isMounted]);
 
+  //детект изменения displayText, и применимые к ситуации действия
   useEffect(() => {
     if (
       staticDisplayLength.current > displayText.length &&
@@ -58,6 +61,7 @@ const Menu = () => {
     }
   }, [displayText]);
 
+  //таймер
   let secondsInterval = useRef(null);
   useEffect(() => {
     if (toggleTimerState === true && toggleButton === 1) {
@@ -75,10 +79,12 @@ const Menu = () => {
     }
   }, [toggleTimerState]);
 
+  // обновление текущего spm
   useEffect(() => {
     lastSPM.current = toggleSPM;
   }, [seconds]);
 
+  //сброс таймера
   useEffect(() => {
     setDisplayText("");
     setIsMounted(false);
@@ -87,6 +93,7 @@ const Menu = () => {
     clearInterval(secondsInterval.current);
   }, [timerEnd]);
 
+  //сброс общих значений
   useEffect(() => {
     setGeneratedText("");
     setPause(true);
@@ -94,6 +101,17 @@ const Menu = () => {
     clearInterval(secondsInterval.current);
     setToggleTimerState(false);
   }, [afterBtn]);
+
+  //детект при монтаже конкретно в этом случае нужен для корректного изменения displayText на значение взятое из generatedText
+  useEffect(() => {
+    setIsLibraryMounted(false);
+    setDisplayText(generatedText);
+  }, [isLibraryMounted]);
+
+  //ниже функции на кнопках
+  const handleLibraryClick = () => {
+    setIsLibraryPopupOpen(!isLibraryPopupOpen);
+  };
 
   const handlePopupOne = () => {
     let text = "";
@@ -105,15 +123,6 @@ const Menu = () => {
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
-  };
-
-  useEffect(() => {
-    setIsLibraryMounted(false);
-    setDisplayText(generatedText);
-  }, [isLibraryMounted]);
-
-  const handleLibraryClick = () => {
-    setIsLibraryPopupOpen(!isLibraryPopupOpen);
   };
 
   const handlePopupTwo = () => {
@@ -142,6 +151,16 @@ const Menu = () => {
     setIsLibraryPopupOpen(false);
   };
 
+  const handleClickRefresh = () => {
+    setIsMounted(false);
+    setToggleTimerState(false);
+    staticDisplayLength.current = generatedText.length;
+    clearInterval(secondsInterval.current);
+    setPause(true);
+    setToggleTimerState(false);
+  };
+
+  // рендер
   const switchTypeText =
     toggleButton === 0 ? (
       <div className={classes.lastKey}>
@@ -165,72 +184,81 @@ const Menu = () => {
   return (
     <div>
       <div className={classes.typing}>
-        <div className={classes.typing__buttons1}>
-          <div className={classes.timer__wrapper}>
-            <h2
-              style={{
-                display: toggleButton === 1 ? "block" : "none",
-                margin: "6px 10px 0 0",
-              }}
-            >
-              sp/m
-              <br />
-              &nbsp;&nbsp;&nbsp;
-              {lastSPM.current === 0 ? toggleSPM : lastSPM.current}
-            </h2>
-            <div
-              style={{
-                display: toggleButton === 1 ? "block" : "none",
-                willChange: "transform",
-              }}
-            >
-              {toggleTimerState ? (
-                <div className={classes.timer}>
-                  <div className={classes.timer__line} />
-                </div>
-              ) : (
-                <div className={classes.timer__off} />
-              )}
+        <div style={{ display: "flex", margin: "auto" }}>
+          <div className={classes.typing__buttons1}>
+            <div className={classes.timer__wrapper}>
+              <h2
+                style={{
+                  display: toggleButton === 1 ? "block" : "none",
+                  margin: "6px 10px 0 0",
+                }}
+              >
+                sp/m
+                <br />
+                &nbsp;&nbsp;&nbsp;
+                {lastSPM.current === 0 ? toggleSPM : lastSPM.current}
+              </h2>
+              <div
+                style={{
+                  display: toggleButton === 1 ? "block" : "none",
+                  willChange: "transform",
+                }}
+              >
+                {toggleTimerState ? (
+                  <div className={classes.timer}>
+                    <div className={classes.timer__line} />
+                  </div>
+                ) : (
+                  <div className={classes.timer__off} />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          className={classes.title}
-          style={{ transition: "all, 0.9s", width: pause ? "250px" : "800px" }}
-        >
-          {switchTypeText}
           <div
+            className={classes.title}
             style={{
-              display: pause ? "none" : "block",
+              transition: "all, 0.9s",
+              width: pause ? "250px" : "800px",
             }}
-            className={classes.typing__cursor}
-          />
-        </div>
-        <div
-          className={classes.popup__inner}
-          style={{ display: isLibraryPopupOpen === true ? "block" : "none" }}
-        >
-          <ul className={classes.popup__list}>
-            <li onClick={handlePopupOne}>
-              <h2>Случайный текст на русском</h2>
-            </li>
-            <li onClick={handlePopupTwo}>
-              <h2>Случайный текст на английском</h2>
-            </li>
-            <li onClick={handlePopupThree}>
-              <h2>React & Frontend</h2>
-            </li>
-          </ul>
-        </div>
-        <div className={classes.typing__buttons2}>
+          >
+            {switchTypeText}
+            <div
+              style={{
+                display: pause ? "none" : "block",
+              }}
+              className={classes.typing__cursor}
+            />
+          </div>
           <div
-            className={classes.popup}
-            onClick={closePopup}
-            style={{
-              cursor: "pointer",
-              display: isLibraryPopupOpen === true ? "block" : "none",
-            }}
-          ></div>
+            className={classes.popup__inner}
+            style={{ display: isLibraryPopupOpen === true ? "block" : "none" }}
+          >
+            <ul className={classes.popup__list}>
+              <li onClick={handlePopupOne}>
+                <h2>Случайный текст на русском</h2>
+              </li>
+              <li onClick={handlePopupTwo}>
+                <h2>Случайный текст на английском</h2>
+              </li>
+              <li onClick={handlePopupThree}>
+                <h2>React & Frontend</h2>
+              </li>
+            </ul>
+          </div>
+          <div className={classes.typing__buttons2}>
+            <button
+              onClick={handleClickRefresh}
+              className={classes.refresh}
+              style={{
+                transition: "all, 0.8s",
+                opacity: pause ? "0" : "1",
+                cursor: pause ? "default" : "pointer",
+              }}
+              disabled={pause ? true : false}
+            >
+              <img src={refreshImg} alt="refresh img" />
+            </button>
+          </div>
         </div>
       </div>
       <div className={classes.connector__wrapper}>
@@ -239,6 +267,16 @@ const Menu = () => {
           <Tab />
         </div>
       </div>
+
+      {/* popup */}
+      <div
+        className={classes.popup}
+        onClick={closePopup}
+        style={{
+          cursor: "pointer",
+          display: isLibraryPopupOpen === true ? "block" : "none",
+        }}
+      />
     </div>
   );
 };
