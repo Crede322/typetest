@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/typetest/static/css/main.685b17fc.css",
+    "main.js": "/typetest/static/js/main.f6c75d94.js",
+    "static/media/logo.svg": "/typetest/static/media/logo.082ab47010c5db5ece81f5be110f0091.svg",
+    "static/media/paste.svg": "/typetest/static/media/paste.2e3564aa02d9cd00cad5d445808dc50a.svg",
+    "static/media/lib.svg": "/typetest/static/media/lib.16da1a88f4cd2b710943f6cbb3cdf10b.svg",
+    "static/media/EnterBlue.svg": "/typetest/static/media/EnterBlue.ebae5108721076db2663dbb274e45124.svg",
+    "static/media/EnterGreen.svg": "/typetest/static/media/EnterGreen.5782e21b5837ef3a18d04509fb2df512.svg",
+    "static/media/EnterRed.svg": "/typetest/static/media/EnterRed.72240dd56845b8dcaf1a155b89f445cc.svg",
+    "static/media/EnterViolet.svg": "/typetest/static/media/EnterViolet.695915e74cf3a7c9a370c1861f73c4cd.svg",
+    "static/media/Enter.svg": "/typetest/static/media/Enter.6b322820cfa399645e90ccac8aea23d5.svg",
+    "index.html": "/typetest/index.html",
+    "static/media/refresh.svg": "/typetest/static/media/refresh.515bb0b2302775a93e0356535b4c7c9f.svg",
+    "main.685b17fc.css.map": "/typetest/static/css/main.685b17fc.css.map",
+    "main.f6c75d94.js.map": "/typetest/static/js/main.f6c75d94.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.685b17fc.css",
+    "static/js/main.f6c75d94.js"
+  ]
+}
