@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/typetest/static/css/main.685b17fc.css",
     "main.js": "/typetest/static/js/main.f6c75d94.js",
     "static/media/logo.svg": "/typetest/static/media/logo.082ab47010c5db5ece81f5be110f0091.svg",
@@ -18,5 +19,24 @@
   "entrypoints": [
     "static/css/main.685b17fc.css",
     "static/js/main.f6c75d94.js"
+=======
+    "main.css": "/typetest/static/css/main.a2d5a8a2.css",
+    "main.js": "/typetest/static/js/main.b4b19b76.js",
+    "static/media/logo.svg": "/typetest/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/paste.svg": "/typetest/static/media/paste.996a395536b092e01f40719ccd91c734.svg",
+    "static/media/lib.svg": "/typetest/static/media/lib.97a84e2450ab0a6f00e3926ee8911ecb.svg",
+    "static/media/EnterBlue.svg": "/typetest/static/media/EnterBlue.bfb8f414716cca6d31a5ddcfa553139b.svg",
+    "static/media/EnterGreen.svg": "/typetest/static/media/EnterGreen.f89ee077a66384e99a6759f76debd86a.svg",
+    "static/media/EnterRed.svg": "/typetest/static/media/EnterRed.3ce8d57dd84df0200afc8f31ecc7ee4f.svg",
+    "static/media/EnterViolet.svg": "/typetest/static/media/EnterViolet.a6f49ee47388506976909f747bc621ba.svg",
+    "static/media/Enter.svg": "/typetest/static/media/Enter.6584593a23b8546b3ec13489b4a94f43.svg",
+    "index.html": "/typetest/index.html",
+    "main.a2d5a8a2.css.map": "/typetest/static/css/main.a2d5a8a2.css.map",
+    "main.b4b19b76.js.map": "/typetest/static/js/main.b4b19b76.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a2d5a8a2.css",
+    "static/js/main.b4b19b76.js"
+>>>>>>> d23d72f7f0971f335e02cda8451132b59794c9c1
   ]
 }
