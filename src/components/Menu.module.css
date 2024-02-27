@@ -1,3 +1,9 @@
+@media (max-width: 1455px) {
+  .select__mode {
+    display: none;
+  }
+}
+
 .title {
   border-radius: 10px;
   height: 80px;

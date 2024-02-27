@@ -2,7 +2,13 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  padding: 120px;
+  padding: 20px;
   padding-top: 50px;
   background-color: #eef2f4;
+}
+
+@media (max-width: 1455px) {
+  .main {
+    padding-top: 10px;
+  }
 }

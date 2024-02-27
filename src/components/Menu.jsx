@@ -47,6 +47,7 @@ const Menu = () => {
       staticDisplayLength.current = generatedText.length;
       setSeconds(120);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
   //детект изменения displayText, и применимые к ситуации действия
@@ -61,6 +62,7 @@ const Menu = () => {
     if (toggleButton === 2 && displayText.length === 0) {
       setDisplayText(generatedText);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayText]);
 
   //таймер
@@ -79,11 +81,13 @@ const Menu = () => {
         });
       }, 500);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleTimerState]);
 
   // обновление текущего spm
   useEffect(() => {
     lastSPM.current = toggleSPM;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seconds]);
 
   //сброс таймера
@@ -93,6 +97,7 @@ const Menu = () => {
     setToggleTimerState(false);
     staticDisplayLength.current = generatedText.length;
     clearInterval(secondsInterval.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timerEnd]);
 
   //сброс общих значений
@@ -102,12 +107,14 @@ const Menu = () => {
     setIsMounted(!isMounted);
     clearInterval(secondsInterval.current);
     setToggleTimerState(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [afterBtn]);
 
   //детект при монтаже конкретно в этом случае нужен для корректного изменения displayText на значение взятое из generatedText
   useEffect(() => {
     setIsLibraryMounted(false);
     setDisplayText(generatedText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLibraryMounted]);
 
   //ниже функции на кнопках
@@ -190,6 +197,7 @@ const Menu = () => {
   return (
     <div>
       <div
+        className={classes.select__mode}
         style={{
           transition: "all, 0.4s",
           margin: "auto",
