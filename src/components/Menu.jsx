@@ -6,7 +6,7 @@ import pasteImg from "../img/paste.svg";
 import libImg from "../img/lib.svg";
 import refreshImg from "../img/refresh.svg";
 import { TabContext } from "../context/TabContext.tsx";
-import { fakerRU, fakerEN } from "@faker-js/faker";
+import { fakerRU } from "@faker-js/faker";
 
 const Menu = () => {
   const { toggleButton, lastKey, displayText, setDisplayText, afterBtn } =
@@ -16,28 +16,35 @@ const Menu = () => {
   const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
   const [isLibraryMounted, setIsLibraryMounted] = useState(false);
   const [toggleSPM, setToggleSPM] = useState(0);
-  const [pause, setPause] = useState(true);
-  const [seconds, setSeconds] = useState(120);
-  const [toggleTimerState, setToggleTimerState] = useState(false);
-  const [timerEnd, setTimerEnd] = useState(false);
-  const [showTimer, setShowTimer] = useState(false);
   const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
+  const [preTitleText, setPreTitleText] = useState("Выберите режим :");
+
+  // стейты с таймерами
+  const [seconds, setSeconds] = useState(120);
+  const [toggleTimerState, setToggleTimerState] = useState(false);
+  const [pause, setPause] = useState(true);
+  const [timerEnd, setTimerEnd] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
 
   // кнопка буфера обмена
   const handleClickClipboard = async () => {
     try {
       const text = await navigator.clipboard.readText();
-      setGeneratedText(toggleTimerState ? "" : text);
+      if (text.length < 10) {
+        setPreTitleText("too short text length!");
+      } else if (text.length > 10) {
+        setGeneratedText(toggleTimerState ? "" : text);
+        setIsMounted(true);
+        setIsLibraryMounted(true);
+        setTimerEnd(!timerEnd);
+        setPause(false);
+        setToggleTimerState(false);
+        setShowTimer(true);
+      }
     } catch (error) {
       console.error("Ошибка при чтении буфера обмена", error);
     }
-    setIsMounted(true);
-    setIsLibraryMounted(true);
-    setTimerEnd(!timerEnd);
-    setPause(false);
-    setToggleTimerState(false);
-    setShowTimer(true);
   };
 
   //монтирование после нажатия (like a switcher)
@@ -136,11 +143,9 @@ const Menu = () => {
   };
 
   const handlePopupTwo = () => {
-    let text = "";
-    while (text.length < 1000) {
-      text += fakerEN.lorem.sentence();
-    }
-    setGeneratedText(text);
+    setGeneratedText(
+      "The foundation of any successful business lies in providing goods or services that meet the needs of customers. Understanding your target audience and offering products that align with their expectations is crucial for sustained success in the market.Staying informed and analyzing market trends are key factors in business success. Understanding the competitive landscape, crafting effective marketing strategies, and adapting to changes are all essential in gaining a competitive advantage.Financial management is also integral to running a business. It involves budget planning, expense control, and strategic investments to ensure financial stability and growth.However, the path to success in business is not always smooth. Challenges and setbacks are inevitable. The ability to adapt, problem-solve, and learn from failures is crucial to keep moving forward.Moreover, business plays a significant social role, influencing employment, economic growth, and societal well-being. Corporate social responsibility has become increasingly relevant, with companies actively investing resources into social and environmental initiatives.Overall, business is a complex and dynamic field that requires effort, knowledge, and skills. It creates opportunities for growth and prosperity, serving as an integral part of modern society.",
+    );
     setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
     setPause(false);
@@ -150,13 +155,12 @@ const Menu = () => {
 
   const handlePopupThree = () => {
     setGeneratedText(
-      "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start",
+      "import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component  className={} aria npm start import React useState = () => {} Component.module.css switch if else useContext setState() onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface contextProvider style switch setState() default function type handleClick toggle return Array React.FC(props) id style useEffect setTimeout case else substring console.log let className === setState() interface handleClick Component className={} aria npm start onClick !== return const import useEffect() function export case default break npm run test setTimeout map trim className type interface",
     );
     setIsLibraryMounted(true);
     setTimerEnd(!timerEnd);
     setPause(false);
     setIsLibraryPopupOpen(false);
-    setShowTimer(true);
   };
 
   const closePopup = () => {
@@ -164,6 +168,7 @@ const Menu = () => {
   };
 
   const handleClickRefresh = () => {
+    setPreTitleText("Выберите режим :");
     setIsMounted(false);
     setToggleTimerState(false);
     staticDisplayLength.current = generatedText.length;
@@ -197,11 +202,11 @@ const Menu = () => {
   return (
     <div>
       <div
-        className={classes.select__mode}
+        className={classes.pre__title}
         style={{
           transition: "all, 0.4s",
           margin: "auto",
-          width: "220px",
+          width: "240px",
           fontSize: "24px",
           textWrap: "nowrap",
           marginBottom: "10px",
@@ -210,7 +215,7 @@ const Menu = () => {
           fontWeight: 500,
         }}
       >
-        <h2>Выберите режим :</h2>
+        <h2>{preTitleText}</h2>
       </div>
       <div className={classes.typing}>
         <div style={{ display: "flex", margin: "auto" }}>
@@ -267,7 +272,7 @@ const Menu = () => {
                 <h2>Случайный текст на русском</h2>
               </li>
               <li onClick={handlePopupTwo}>
-                <h2>Случайный текст на английском</h2>
+                <h2>Текст на английском</h2>
               </li>
               <li onClick={handlePopupThree}>
                 <h2>React & Frontend</h2>

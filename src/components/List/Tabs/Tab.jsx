@@ -329,9 +329,7 @@ const Tab = () => {
         ? EnterBlue
         : stateObjects.colorState13 === "rgba(255, 0, 0, 0.9)"
           ? EnterRed
-          : stateObjects.colorState13 === "rgba(16, 185, 129, 0.7)"
-            ? EnterGreen
-            : Enter;
+          : Enter;
 
   return (
     <div>

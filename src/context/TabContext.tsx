@@ -31,7 +31,7 @@ const TabContext = createContext<any>(0);
 const TabContextProvider = ({ children }: { children: ReactNode }) => {
   const [toggleButton, setToggleButton] = useState<number>(1);
   const [lastKey, setLastKey] = useState<string>("");
-  const [mainColor, setMainColor] = useState<string>("rgba(53, 29, 163, 0.7)");
+  const [mainColor, setMainColor] = useState<string>("rgba(0, 39, 211, 0.7)");
   const [clipBoard, setClipBoard] = useState<string>("");
   const [displayText, setDisplayText] = useState<string[]>([]);
   const [afterBtn, resetAfterBtn] = useState<boolean>(true);
