@@ -3,12 +3,27 @@
   height: 100vh;
   overflow: hidden;
   padding: 20px;
-  padding-top: 50px;
+  padding-top: 30px;
   background-color: #eef2f4;
 }
 
 @media (max-width: 1455px) {
   .main {
     padding-top: 10px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .main {
+    display: none;
+  }
+
+  .empty_block::after {
+    content: "у вас слишком маленькое разрешение экрана, сайт рассчитан на мониторы больше 1366px";
+    font-size: 28px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    line-height: 100%;
   }
 }
