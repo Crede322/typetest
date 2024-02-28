@@ -6,7 +6,6 @@ import Enter from "./Enter.svg";
 import EnterViolet from "./EnterViolet.svg";
 import EnterBlue from "./EnterBlue.svg";
 import EnterRed from "./EnterRed.svg";
-import EnterGreen from "./EnterGreen.svg";
 
 const Tab = () => {
   const initialState = {};
