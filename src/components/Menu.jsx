@@ -11,16 +11,16 @@ import { fakerRU } from "@faker-js/faker";
 const Menu = () => {
   const { toggleButton, lastKey, displayText, setDisplayText, afterBtn } =
     useContext(TabContext);
-  const [generatedText, setGeneratedText] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const [isLibraryPopupOpen, setIsLibraryPopupOpen] = useState();
   const [isLibraryMounted, setIsLibraryMounted] = useState(false);
+  const [generatedText, setGeneratedText] = useState("");
   const [toggleSPM, setToggleSPM] = useState(0);
   const staticDisplayLength = useRef(0);
   const lastSPM = useRef(0);
   const [preTitleText, setPreTitleText] = useState("Выберите режим :");
 
-  // стейты с таймерами
+  // стейты к таймеру
   const [seconds, setSeconds] = useState(120);
   const [toggleTimerState, setToggleTimerState] = useState(false);
   const [pause, setPause] = useState(true);

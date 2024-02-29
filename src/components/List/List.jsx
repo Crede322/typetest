@@ -12,6 +12,7 @@ const List = () => {
     resetAfterBtn,
   } = useContext(TabContext);
 
+  // кнопки меню
   const btnOne = () => {
     setToggleButton(0);
     console.log("1");
