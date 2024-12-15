@@ -4,7 +4,7 @@
 
 ## Деплой :
 
-https://riiru.github.io/typetest/
+https://Crede322.github.io/typetest/
 
 ## Поддерживаемые разрешения экранов :
 
